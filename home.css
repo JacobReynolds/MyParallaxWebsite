@@ -1,0 +1,206 @@
+body {
+    background: #141414;
+    height: 1000vh;
+    overflow: hidden;
+}
+
+div#heightHolder {
+    height: 100vh;
+    display: none;
+}
+
+div#terminal {
+    min-width: 250px;
+    min-height: 100px;
+    position: relative;
+    margin: auto;
+    top: 300px;
+    height: 40vh;
+    width: 40vw;
+    font-family: 'Ubuntu Mono';
+    font-size: 16px;
+    background: #2C001E;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -webkit-box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.75);
+}
+
+#fileBar {
+    width: 100%;
+    height: 20px;
+    color: white;
+    border-top: 2px #404040;
+    -webkit-user-select: none;
+    text-align: center;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #595959), color-stop(100%, #404040));
+    background: -moz-linear-gradient(top, #A9A9A9 0%, #333333 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#fileBar span {
+    padding-left: 10px;
+    cursor: default;
+}
+
+#terminalInput {
+    color: white;
+    font-family: 'Ubuntu Mono';
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: none;
+    width: 70%;
+}
+
+#terminalOutput {
+    overflow-x: auto;
+    height: 300px;
+    padding-top: 3px;
+    padding-left: 2px;
+    color: white;
+}
+/* foreground (balloons/landscape)*/
+
+div#parallax-bg-3 div {
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 256px;
+    height: 256px;
+}
+
+div#cube {
+    background: url('http://icons.iconarchive.com/icons/tatice/cristal-intense/256/Rubiks-cube-icon.png');
+    top: 180vh;
+    left: 100px;
+    text-align: center;
+}
+
+div#cubeText {
+    opacity: 1;
+    z-index: -1;
+    top: 75px;
+    overflow: hidden;
+    height: 50px !important;
+    width: 180px !important;
+    position: absolute;
+    background: aquamarine;
+    left: 29px !important;
+    transition: all 1s ease;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+div#cube:hover #cubeText {
+    opacity: 1;
+    height: 190px !important;
+    transform: translateY(90px);
+}
+
+div#parallax-bg-2 {
+    position: fixed;
+    width: 140vh;
+    top: 0;
+    z-index: 2;
+    left: 40vw;
+}
+
+div#parallax-bg-3 {
+    position: fixed;
+    width: 150vw;
+    top: 0;
+    z-index: 1;
+}
+/* middle layer clouds */
+
+div#parallax-bg-2 div {
+    background: url('http://www.clker.com/cliparts/k/4/0/f/7/7/high-resolution-gear-md.png');
+    background-size: 250px 250px;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    width: 256px;
+    height: 256px;
+    overflow: hidden;
+}
+
+div#motorcycle {
+    top: 160vh;
+}
+
+div#parallax-bg-1 {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    left: 60vw;
+}
+
+div#parallax-bg-1 div {
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    top: 115vh;
+    width: 350px;
+    height: 350px;
+}
+
+div#diving {
+    background: url('diving.png');
+    background-size: 350px 350px;
+    border-radius: 10px;
+}
+
+@keyframes flipInX {
+    0% {
+        transform: translate3d(0px, -300px, 0px);
+    }
+    100% {
+        transform: translate3d(0px, 80px, 0px);
+    }
+}
+/*@-webkit-keyframes flipInX {
+    0% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg) rotateY(30deg) rotate(340deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+    40% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg) rotateY(30deg) rotate(340deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 5deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 5deg) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 5deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 5deg) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 5deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 5deg) rotateY(30deg) rotate(340deg);
+    }
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg) rotateY(30deg) rotate(340deg);
+    }
+    100% {
+        -webkit-transform: perspective(400px) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotateY(30deg) rotate(340deg);
+        -webkit-transform: perspective(400px) rotateY(30deg) rotate(340deg);
+        transform: perspective(400px) rotateY(30deg) rotate(340deg);
+    }
+}*/
