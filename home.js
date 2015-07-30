@@ -1,4 +1,4 @@
-var commandList = ['ls', 'help', 'cat', 'continue', 'clear'];
+var commandList = ['ls', 'help', 'cat', 'continue', 'clear', 'reverse'];
 
 this['about.txt'] = 'This is about me';
 
@@ -7,6 +7,10 @@ var files = ['about.txt']
 var user = 'root@jakereynolds:~$';
 
 var commandHistory = [];
+
+var pageIndex = 0;
+
+var backgroundColorList = ['#141414', '#341311', '#606E4B'];
 
 var commandIndex = -1;
 jQuery(document).ready(function () {
@@ -47,6 +51,11 @@ jQuery(document).ready(function () {
             replaceInput();
             addInput();
             break;
+        case 'reverse':
+            scrollUp();
+            replaceInput();
+            addInput();
+            break;
         case 'help':
             printList(commandList);
             break;
@@ -63,16 +72,67 @@ jQuery(document).ready(function () {
     }
 
     function scrollDown() {
+        pageIndex++;
         var offset = $('#heightHolder').height();
         $('body').animate({
-            scrollTop: offset * 3,
-            backgroundColor: '#341311'
+            scrollTop: offset * (pageIndex * 3),
+            backgroundColor: backgroundColorList[pageIndex]
         }, 1000);
         $('#terminal').animate({
-            top: offset * 3 + 400,
-            left: -($(window).width()) / 4
+            top: offset * (pageIndex * 3) + 400,
+            left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
         }, 1000);
+
+        switch (pageIndex) {
+        case 1:
+            setTimeout(function () {
+                shake($('#cube'));
+            }, 2000);
+            break;
+        case 2:
+            setTimeout(function () {
+                $('#motorcycle').animate({
+                    rotation: 90
+                }, 1000)
+            }, 2000);
+            break;
+        case 3:
+            break;
+        }
     }
+
+    function scrollUp() {
+        var top = $('body').scrollTop();
+        var offset = $('#heightHolder').height();
+        pageIndex--;
+        $('body').animate({
+            scrollTop: 0 + offset * (pageIndex * 3),
+            backgroundColor: backgroundColorList[pageIndex]
+        }, 1000);
+        $('#terminal').animate({
+            top: 0 + offset * (pageIndex * 3) + 400,
+            left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
+        }, 1000);
+
+    }
+
+    function shake(div) {
+            var interval = 100;
+            var distance = 10;
+            var times = 4;
+            var left = div.offset();
+            left = left.left;
+            for (var iter = 0; iter < (times + 1); iter++) {
+                $(div).animate({
+                    left: ((iter % 2 == 0 ? left + distance : left - distance))
+                }, interval);
+            } //for                                                                                                              
+
+            $(div).animate({
+                left: left
+            }, interval);
+
+        } //shake        
 
     function printFile(file) {
         replaceInput();

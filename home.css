@@ -2,12 +2,14 @@ body {
     background: #141414;
     height: 1000vh;
     overflow: hidden;
+    font-family: 'Khand', sans-serif;
 }
 
 div#heightHolder {
     height: 100vh;
     display: none;
 }
+/*Terminal*/
 
 div#terminal {
     min-width: 250px;
@@ -16,9 +18,10 @@ div#terminal {
     margin: auto;
     top: 300px;
     height: 40vh;
-    width: 40vw;
+    width: 600px;
     font-family: 'Ubuntu Mono';
     font-size: 16px;
+    overflow: hidden;
     background: #2C001E;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -29,11 +32,12 @@ div#terminal {
 
 #fileBar {
     width: 100%;
-    height: 20px;
+    height: 6%;
     color: white;
-    border-top: 2px #404040;
+    position: relative;
     -webkit-user-select: none;
     text-align: center;
+    overflow: hidden;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #595959), color-stop(100%, #404040));
     background: -moz-linear-gradient(top, #A9A9A9 0%, #333333 100%);
     border-top-left-radius: 10px;
@@ -56,26 +60,55 @@ div#terminal {
 }
 
 #terminalOutput {
-    overflow-x: auto;
-    height: 300px;
-    padding-top: 3px;
+    height: 94%;
     padding-left: 2px;
+    width: 103%;
+    overflow-y: scroll;
     color: white;
+    position: relative;
 }
-/* foreground (balloons/landscape)*/
+/*End terminal*/
+
+div#parallax-bg-1 {
+    position: fixed;
+    z-index: 1;
+}
+/*Parallax settings*/
+
+div#parallax-bg-1 div {
+    position: relative;
+}
+
+div#parallax-bg-2 {
+    position: fixed;
+    z-index: 2;
+}
+
+div#parallax-bg-2 div {
+    position: absolute;
+}
+
+div#parallax-bg-3 {
+    position: fixed;
+    z-index: 3;
+}
 
 div#parallax-bg-3 div {
-    background-repeat: no-repeat;
     position: absolute;
+}
+/*end parallax settings*/
+/*Cubes*/
+
+.cube {
+    background: url('http://icons.iconarchive.com/icons/tatice/cristal-intense/256/Rubiks-cube-icon.png');
+    text-align: center;
     width: 256px;
     height: 256px;
 }
 
 div#cube {
-    background: url('http://icons.iconarchive.com/icons/tatice/cristal-intense/256/Rubiks-cube-icon.png');
-    top: 180vh;
-    left: 100px;
-    text-align: center;
+    top: 200vh;
+    left: 60vw;
 }
 
 div#cubeText {
@@ -93,64 +126,75 @@ div#cubeText {
     border-bottom-left-radius: 20px;
 }
 
-div#cube:hover #cubeText {
+div#cube:hover div#cubeText {
     opacity: 1;
     height: 190px !important;
     transform: translateY(90px);
 }
 
-div#parallax-bg-2 {
-    position: fixed;
-    width: 140vh;
-    top: 0;
-    z-index: 2;
-    left: 40vw;
+div#cube2 {
+    top: 160vh;
+    left: 50vw;
 }
 
-div#parallax-bg-3 {
-    position: fixed;
-    width: 150vw;
-    top: 0;
-    z-index: 1;
+div#cube3 {
+    top: 105vh;
+    left: 70vw;
 }
-/* middle layer clouds */
+/*End cubes*/
+/*Motorcycles*/
 
-div#parallax-bg-2 div {
+div#motorcycle {
     background: url('http://www.clker.com/cliparts/k/4/0/f/7/7/high-resolution-gear-md.png');
     background-size: 250px 250px;
     background-repeat: no-repeat;
-    position: absolute;
-    display: block;
     width: 256px;
     height: 256px;
-    overflow: hidden;
+    top: 380vh;
+    left: 40vw;
 }
 
-div#motorcycle {
-    top: 160vh;
+div#motorcycle:hover ~ div#motorcycle2 {
+    transform: translateX(80vh) rotate(180deg);
 }
 
-div#parallax-bg-1 {
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    left: 60vw;
+div#motorcycle:hover ~ div#motorcycleText {
+    transform: translateX(80vh);
 }
 
-div#parallax-bg-1 div {
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
-    top: 115vh;
+div#motorcycle2 {
+    background: url('http://www.clker.com/cliparts/k/4/0/f/7/7/high-resolution-gear-md.png');
+    background-size: 350px 350px;
+    top: 378vh;
     width: 350px;
     height: 350px;
+    left: -50vh;
+    transition: all 1s ease;
 }
+
+div#motorcycleText {
+    text-align: center;
+    top: 386vh;
+    width: 225px;
+    height: 225px;
+    margin: auto;
+    left: -42vh;
+    border-radius: 50%;
+    transition: all 1s ease;
+}
+/*End motorcycles*/
+/*Diving*/
 
 div#diving {
     background: url('diving.png');
     background-size: 350px 350px;
+    top: 550vh;
+    left: 60vw;
+    width: 350px;
+    height: 350px;
     border-radius: 10px;
 }
+/*End diving*/
 
 @keyframes flipInX {
     0% {
