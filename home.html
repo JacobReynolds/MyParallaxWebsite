@@ -1,3 +1,12 @@
+<!DOCTYPE HTML>
+<!--
+Thanks for checking the source!
+
+The full source can be viewed on my github.
+
+For the best easter egg experience: view in Chrome.
+-->
+<meta name="viewport" content="initial-scale=0.5, user-scalable=yes">
 <html>
 
 <head>
@@ -8,54 +17,71 @@
 </head>
 
 <body>
-    <div id="heightHolder"></div>
-    <div id="terminal">
-        <div id="fileBar"><span>root@jakereynolds:~</span>
-        </div>
-        <div id="terminalOutput">
-            <span id="welcomeMessage">
-            /*****************************
-            <br> Welcome!
-            <br> My name's Alvin, and I'll be your guide today.
-            <br> Type "continue" to advance the page,
-            <br> and have some linux fun to explore other features.
-            <br> Let's get started.
-            <br> *****************************/
-            <br></span>
-        </div>
+    <div id="mediaWarning">
+        <p>It appears you are viewing this webpage on a mobile device.
+            <br> For an enhanced viewing experience please visit on a computer.
+            <br>
+            <button onclick="showPage()">Just let me enter already</button>
+        </p>
     </div>
-    <section id="about">
-        <div id="parallax-bg-3">
-            <div id="cube" class="cube">
-                <div id="cubeText"><small><br><br><br><br>Once I decided to study Computer Science I began to love coding and puzzles. Rubik's cubes fascinated me with their 43,252,003,274,489,856,000 possible combinations.</small>
+    <div id="fullPage">
+        <div id="heightHolder"></div>
+        <div id="terminal">
+            <div id="fileBar"><span>root@jakereynolds:~</span>
+            </div>
+            <div id="terminalOutput">
+                <span id="welcomeMessage">
+            /*****************************
+            <br>Welcome!
+            <br>My name's Alvin, and I'll be your guide today.
+            <br>Type "continue" to advance the page,
+            <br>and have some linux fun to explore other features.
+            <br>This website is currently under development,
+            <br>any suggestions can be emailed to reyno511@umn.edu
+            <br>Let's get started.
+            <br>*****************************/
+            <br></span>
+            </div>
+        </div>
+        <section id="about">
+            <div id="parallax-bg-3">
+                <div id="cube" class="cube">
+                    <div id="cubeText"><small><br><br><br>Once I decided to study Computer Science I began to love coding and puzzles. Rubik's cubes fascinated me with their 43,252,003,274,489,856,000 possible combinations.</small>
+                    </div>
+                </div>
+                <div id="motorcycle"></div>
+                <div id="motorcycle2">
+                </div>
+                <div id="motorcycleText" style="padding-top: 85px;">
+                    <br>I became interested
+                    <br>in motorcycles once I
+                    <br> turned 15, and I gained a pretty
+                    <br> fun hobby. I currently own a
+                    <br>2006 Kawasaki Z1000.
                 </div>
             </div>
-            <div id="motorcycle"></div>
-            <div id="motorcycle2">
+            <div id="parallax-bg-2">
+                <div id="cube2" class="cube">
+                    <div id="cubeText"><small><br><br><br>Most advanced solving methods require 4 stages, with over 150 possible alogorithms total.  My personal record is currently<br> 20.82 seconds.</small>
+                    </div>
+                </div>
             </div>
-            <div id="motorcycleText">
-                <br>
-                <br>I became interested
-                <br>in motorcycles once I
-                <br> turned 15, and I gained a pretty
-                <br> fun hobby. I currently own a
-                <br>2006 Kawasaki Z1000.
+            <div id="parallax-bg-1">
+                <div id="cube3" class="cube">
+                    <div id="cubeText"><small><br><br><br>I own a total of 20 different cubes, ranging from 2x2-7x7 dimensions, and 4-12 sides.  Cubing is a cheap hobby, making it perfect for collectors.</small>
+                    </div>
+                </div>
+                <div id="diving"></div>
             </div>
-        </div>
-        <div id="parallax-bg-2">
-            <div id="cube2" class="cube"></div>
-        </div>
-        <div id="parallax-bg-1">
-            <div id="cube3" class="cube"></div>
-            <div id="diving"></div>
-        </div>
-    </section>
+        </section>
+    </div>
 </body>
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
-<script src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
 
-<script src='home.js'></script>
+<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+<script type="text/javascript" src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+
+<script type="text/javascript" src='home.js'></script>
 
 
 </html>

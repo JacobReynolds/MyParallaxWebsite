@@ -10,7 +10,7 @@ var commandHistory = [];
 
 var pageIndex = 0;
 
-var backgroundColorList = ['#141414', '#341311', '#606E4B'];
+var backgroundColorList = ['#141414', '#341311', '#606E4B', '#5E2957'];
 
 var commandIndex = -1;
 jQuery(document).ready(function () {
@@ -27,7 +27,7 @@ jQuery(document).ready(function () {
     function parallaxScroll() {
         var scrolled = $(window).scrollTop();
         $('#parallax-bg-1').css('top', (0 - (scrolled * .25)) + 'px');
-        $('#parallax-bg-2').css('top', (0 - (scrolled * .5)) + 'px');
+        $('#parallax-bg-2').css('top', (0 - (scrolled * .4)) + 'px');
         $('#parallax-bg-3').css('top', (0 - (scrolled * .6)) + 'px');
     }
 
@@ -52,9 +52,11 @@ jQuery(document).ready(function () {
             addInput();
             break;
         case 'reverse':
-            scrollUp();
-            replaceInput();
-            addInput();
+            if (pageIndex) {
+                scrollUp();
+                replaceInput();
+                addInput();
+            }
             break;
         case 'help':
             printList(commandList);
@@ -74,10 +76,11 @@ jQuery(document).ready(function () {
     function scrollDown() {
         pageIndex++;
         var offset = $('#heightHolder').height();
-        $('body').animate({
-            scrollTop: offset * (pageIndex * 3),
-            backgroundColor: backgroundColorList[pageIndex]
+        $('html, body').animate({
+            backgroundColor: backgroundColorList[pageIndex],
+            scrollTop: offset * (pageIndex * 3)
         }, 1000);
+
         $('#terminal').animate({
             top: offset * (pageIndex * 3) + 400,
             left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
@@ -105,7 +108,7 @@ jQuery(document).ready(function () {
         var top = $('body').scrollTop();
         var offset = $('#heightHolder').height();
         pageIndex--;
-        $('body').animate({
+        $('html, body').animate({
             scrollTop: 0 + offset * (pageIndex * 3),
             backgroundColor: backgroundColorList[pageIndex]
         }, 1000);
@@ -182,6 +185,10 @@ jQuery(document).ready(function () {
                 e.preventDefault();
                 $("#terminalInput").val(commandHistory[commandIndex]);
                 commandIndex--;
+            } else if (e.keyCode == 67 && e.ctrlKey) {
+                $("#terminalInput").val('^C');
+                replaceInput();
+                addInput();
             }
         });
     }
@@ -199,3 +206,8 @@ jQuery(document).ready(function () {
     }
 
 });
+
+function showPage() {
+    $('#mediaWarning').css('display', 'none');
+    $('#fullPage').css('display', 'block');
+}
