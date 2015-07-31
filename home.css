@@ -21,9 +21,6 @@ html {
     #fullPage {
         display: none;
     }
-    body {
-        overflow: auto;
-    }
     #mediaWarning {
         display: block;
     }
@@ -361,6 +358,15 @@ section#thankYou h1{
     font-size: 50px;
     text-align: center;
     
+}
+
+section#thankYou p{
+    left: 45vw;
+    position: absolute;
+    line-height: 50px;
+    font-size: 18px;
+    width: 50vw;
+    font-weight: 200;
 }
 
 /*End thank you*/

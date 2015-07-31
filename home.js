@@ -233,4 +233,5 @@ jQuery(document).ready(function () {
 function showPage() {
     $('#mediaWarning').css('display', 'none');
     $('#fullPage').css('display', 'block');
+    $('body').css('overflow', 'auto');
 }
