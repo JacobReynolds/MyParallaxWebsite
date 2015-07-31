@@ -218,7 +218,7 @@ jQuery(document).ready(function() {
     }
 
     function addInput() {
-        $("#terminalOutput").append(user + ' <input id="terminalInput"></input>');
+        $("#terminalOutput").append(user + ' <input id="terminalInput" spellcheck="false"></input>');
         $("#terminalInput").focus();
         $("#terminalInput").keydown(function(e) {
             var command = $("#terminalInput").val();
