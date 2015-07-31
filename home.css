@@ -302,6 +302,69 @@ div#diveText3 {
 }
 /*End diving*/
 
+/*Projects*/
+section#projects{
+    top: 1170vh;
+    position: relative;
+}
+
+div#project{
+ height: 80vh;
+    width: 60vh;
+    background: mintcream;
+    left: 50px;
+    padding: 10px;
+    padding-top: 3px;
+-webkit-box-shadow: 3px 2px 26px 3px rgba(0,0,0,0.48);
+-moz-box-shadow: 3px 2px 26px 3px rgba(0,0,0,0.48);
+box-shadow: 3px 2px 26px 3px rgba(0,0,0,0.48);
+}
+
+div#project h1{
+    text-align: center;
+    font-size: 60px;
+    line-height: 10px;
+}
+
+div#project footer{
+    bottom: 10px;
+    position: absolute;
+}
+/*End projects*/
+
+/*Thank you*/
+section#thankYou {
+    top: 1500vh;
+    position: absolute;
+}
+
+img#mainPicture {
+    border-radius: 50%;
+    top: 10px;
+    left: 40vh;
+    height: 250px;
+    opacity: 1;
+    display: inline;
+    position: relative;
+    -webkit-box-shadow: 3px 2px 26px 3px rgba(0,0,0,0.48);
+-moz-box-shadow: 3px 2px 26px 3px rgba(0,0,0,0.48);
+box-shadow: 3px 2px 26px 3px rgba(0,0,0,0.48);
+}
+
+section#thankYou h1{
+     display: inline;
+     left: 45vw;
+    margin-top: 25%;
+    height: auto;
+    position: absolute;
+    width: 150px;
+    font-size: 50px;
+    text-align: center;
+    
+}
+
+/*End thank you*/
+
 @-webkit-keyframes flipInX {
     0% {
         -webkit-transform: translate3d(0px, -300px, 0px);

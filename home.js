@@ -10,7 +10,7 @@ var commandHistory = [];
 
 var pageIndex = 0;
 
-var backgroundColorList = ['#141414', '#341311', '#606E4B', '#5E2957'];
+var backgroundColorList = ['#141414', '#7F2F2A', '#66CC76', '#5E2957', '#52A7FF', '#CCC045'];
 
 var commandIndex = -1;
 jQuery(document).ready(function () {
@@ -84,7 +84,7 @@ jQuery(document).ready(function () {
         }, 1000);
 
         $('#terminal').animate({
-            top: offset * (pageIndex * 3) + 400,
+            top: offset * (pageIndex * 3) + 500,
             left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
         }, 1000);
 
