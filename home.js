@@ -243,8 +243,9 @@ jQuery(document).ready(function() {
         var command = $("#terminalInput").val();
         var input = $("#terminalInput").val().split(' ');
         var validList = [];
+        var fileList = input[0] === 'man' ? commandList : files
         if (input.length === 2 && input[1] != "") {
-            files.forEach(function(file) {
+            fileList.forEach(function(file) {
                 if (file.substring(0, input[1].length) === input[1]) {
                     validList.push(file);
                 }
