@@ -184,9 +184,15 @@ jQuery(document).ready(function() {
     } //shake        
 
     function printFile(file) {
+        if (this[file]) {
         replaceInput();
         $("#terminalOutput").append(this[file] + '<br>');
         addInput();
+        } else {
+                            replaceInput();
+                $("#terminalOutput").append('"' + file + '"' + ' is an invalid file name.  Try typing "ls".<br>');
+                addInput();
+        }
     }
 
     function printList(list) {
