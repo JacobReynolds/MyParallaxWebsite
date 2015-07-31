@@ -26,9 +26,9 @@ jQuery(document).ready(function () {
 
     function parallaxScroll() {
         var scrolled = $(window).scrollTop();
-        $('#parallax-bg-1').css('top', (0 - (scrolled * .25)) + 'px');
-        $('#parallax-bg-2').css('top', (0 - (scrolled * .4)) + 'px');
-        $('#parallax-bg-3').css('top', (0 - (scrolled * .6)) + 'px');
+        $('.parallax-bg-1').css('top', (0 - (scrolled * .25)) + 'px');
+        $('.parallax-bg-2').css('top', (0 - (scrolled * .4)) + 'px');
+        $('.parallax-bg-3').css('top', (0 - (scrolled * .6)) + 'px');
     }
 
     function sendCommand(input) {
@@ -44,6 +44,8 @@ jQuery(document).ready(function () {
             printFiles();
             break;
         case 'cat':
+            if (!input)
+                break;
             printFile(input);
             break;
         case 'continue':
@@ -93,13 +95,24 @@ jQuery(document).ready(function () {
             }, 2000);
             break;
         case 2:
-            setTimeout(function () {
-                $('#motorcycle').animate({
-                    rotation: 90
-                }, 1000)
-            }, 2000);
             break;
         case 3:
+            var top = $('#diveText').offset();
+            setTimeout(function () {
+                $('#diveText').animate({
+                        top: -320
+
+                    }, 2000),
+                    $('#diveText2').animate({
+                        top: -70,
+                        opacity: 0.5
+
+                    }, 2000),
+                    $('#diveText3').animate({
+                        top: -120
+
+                    }, 2000)
+            }, 1000)
             break;
         }
     }
@@ -195,14 +208,24 @@ jQuery(document).ready(function () {
 
     function autoCompleteInput() {
         var command = $("#terminalInput").val();
-        var input = $("#terminalInput").val().split(' ')[1];
-        files.forEach(function (file) {
-            if (file.substring(0, input.length) === input) {
-                $("#terminalInput").val(
-                    command +
-                    file.substring(input.length, file.length));
-            }
-        })
+        var input = $("#terminalInput").val().split(' ');
+        if (input.length === 2 && input[1] != "") {
+            files.forEach(function (file) {
+                if (file.substring(0, input[1].length) === input[1]) {
+                    $("#terminalInput").val(
+                        command +
+                        file.substring(input[1].length, file.length));
+                }
+            })
+        } else if (command.length) {
+            commandList.forEach(function (option) {
+                if (option.substring(0, input[0].length) === input[0]) {
+                    $("#terminalInput").val(
+                        command +
+                        option.substring(input[0].length, option.length));
+                }
+            })
+        }
     }
 
 });
