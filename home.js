@@ -1,8 +1,16 @@
-var commandList = ['ls', 'help', 'cat', 'continue', 'clear', 'reverse'];
+var commandList = [ 'cat', 'clear', 'continue', 'help',  'ls', 'man', 'reverse'];
+
+this['ls'] = 'List all files in the current directory.';
+this['help'] = 'List possible terminal commands.';
+this['cat'] = 'cat [filename] will print the contents of that file.';
+this['continue'] = 'Will advanced to the next section of the page.';
+this['clear'] = 'Will clear all text in the terminal.';
+this['reverse'] = 'Will reverse to the previous section of the page.';
+this['man'] = 'Will describe a file, but you know that already don\'t you?';
 
 this['about.txt'] = 'This is about me';
 
-var files = ['about.txt']
+var files = ['about.txt', 'apple.txt']
 
 var user = 'root@jakereynolds:~$';
 
@@ -13,14 +21,14 @@ var pageIndex = 0;
 var backgroundColorList = ['#141414', '#7F2F2A', '#66CC76', '#5E2957', '#52A7FF', '#CCC045'];
 
 var commandIndex = -1;
-jQuery(document).ready(function () {
-    $(window).scroll(function (e) {
+jQuery(document).ready(function() {
+    $(window).scroll(function(e) {
         parallaxScroll();
     });
 
     addInput();
 
-    $("#terminal").click(function () {
+    $("#terminal").click(function() {
         $("#terminalInput").focus();
     })
 
@@ -40,32 +48,41 @@ jQuery(document).ready(function () {
             addInput();
         }
         switch (command) {
-        case 'ls':
-            printFiles();
-            break;
-        case 'cat':
-            if (!input)
+            case 'ls':
+                printFiles();
                 break;
-            printFile(input);
-            break;
-        case 'continue':
-            scrollDown();
-            replaceInput();
-            addInput();
-            break;
-        case 'reverse':
-            if (pageIndex) {
+            case 'cat':
+                if (!input)
+                    break;
+                printFile(input);
+                break;
+            case 'continue':
+                scrollDown(command);
+                break;
+            case 'reverse':
                 scrollUp();
-                replaceInput();
-                addInput();
-            }
-            break;
-        case 'help':
-            printList(commandList);
-            break;
-        case 'clear':
-            clear();
-            break;
+                break;
+            case 'help':
+                printList(commandList);
+                break;
+            case 'clear':
+                clear();
+                break;
+            case 'man':
+                man(input);
+                break;
+        }
+    }
+    
+    function man(input) {
+        if (commandList.indexOf(input) > -1) {
+                    replaceInput();
+            $("#terminalOutput").append('"' + input + '"' + '  ' + this[input] + '<br>');
+            addInput();
+        } else {
+                                replaceInput();
+            $("#terminalOutput").append('"' + input + '"' + '  is not a valid command, try typing "help" for options.<br>');
+            addInput();
         }
     }
 
@@ -75,7 +92,39 @@ jQuery(document).ready(function () {
         addInput();
     }
 
-    function scrollDown() {
+    function scrollDown(command) {
+        switch (pageIndex) {
+            case 0:
+                setTimeout(function() {
+                    shake($('#cube'));
+                }, 2000);
+                break;
+            case 1:
+                break;
+            case 2:
+                var top = $('#diveText').offset();
+                setTimeout(function() {
+                    $('#diveText').animate({
+                            top: -320
+
+                        }, 2000),
+                        $('#diveText2').animate({
+                            top: -70,
+                            opacity: 0.5
+
+                        }, 2000),
+                        $('#diveText3').animate({
+                            top: -120
+
+                        }, 2000)
+                }, 1000)
+                break;
+            case 5:
+                replaceInput();
+                $("#terminalOutput").append('You have reached the bottom of the page.<br>Type "reverse" to make your way back up.<br>');
+                addInput();
+                return;
+        }
         pageIndex++;
         var offset = $('#heightHolder').height();
         $('html, body').animate({
@@ -88,38 +137,20 @@ jQuery(document).ready(function () {
             left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
         }, 1000);
 
-        switch (pageIndex) {
-        case 1:
-            setTimeout(function () {
-                shake($('#cube'));
-            }, 2000);
-            break;
-        case 2:
-            break;
-        case 3:
-            var top = $('#diveText').offset();
-            setTimeout(function () {
-                $('#diveText').animate({
-                        top: -320
-
-                    }, 2000),
-                    $('#diveText2').animate({
-                        top: -70,
-                        opacity: 0.5
-
-                    }, 2000),
-                    $('#diveText3').animate({
-                        top: -120
-
-                    }, 2000)
-            }, 1000)
-            break;
-        }
+        replaceInput();
+        addInput();
     }
 
     function scrollUp() {
         var top = $('body').scrollTop();
         var offset = $('#heightHolder').height();
+        switch (pageIndex) {
+            case 0:
+                replaceInput();
+                $("#terminalOutput").append('You are at the top of the page.<br>Type "continue" to make your way down.<br>');
+                addInput();
+                return;
+        }
         pageIndex--;
         $('html, body').animate({
             scrollTop: 0 + offset * (pageIndex * 3),
@@ -129,26 +160,28 @@ jQuery(document).ready(function () {
             top: 0 + offset * (pageIndex * 3) + 400,
             left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
         }, 1000);
+        replaceInput();
+        addInput();
 
     }
 
     function shake(div) {
-            var interval = 100;
-            var distance = 10;
-            var times = 4;
-            var left = div.offset();
-            left = left.left;
-            for (var iter = 0; iter < (times + 1); iter++) {
-                $(div).animate({
-                    left: ((iter % 2 == 0 ? left + distance : left - distance))
-                }, interval);
-            } //for                                                                                                              
-
+        var interval = 100;
+        var distance = 10;
+        var times = 4;
+        var left = div.offset();
+        left = left.left;
+        for (var iter = 0; iter < (times + 1); iter++) {
             $(div).animate({
-                left: left
+                left: ((iter % 2 == 0 ? left + distance : left - distance))
             }, interval);
+        } //for                                                                                                              
 
-        } //shake        
+        $(div).animate({
+            left: left
+        }, interval);
+
+    } //shake        
 
     function printFile(file) {
         replaceInput();
@@ -158,7 +191,7 @@ jQuery(document).ready(function () {
 
     function printList(list) {
         replaceInput();
-        list.forEach(function (result) {
+        list.forEach(function(result) {
             $("#terminalOutput").append(result + '<br>');
         })
         addInput();
@@ -166,7 +199,7 @@ jQuery(document).ready(function () {
 
     function printFiles() {
         replaceInput();
-        files.forEach(function (file) {
+        files.forEach(function(file) {
             $("#terminalOutput").append(file + '<br>');
         })
         addInput();
@@ -181,7 +214,7 @@ jQuery(document).ready(function () {
     function addInput() {
         $("#terminalOutput").append(user + ' <input id="terminalInput"></input>');
         $("#terminalInput").focus();
-        $("#terminalInput").keydown(function (e) {
+        $("#terminalInput").keydown(function(e) {
             var command = $("#terminalInput").val();
             if (e.keyCode == 13) {
                 sendCommand(command);
@@ -189,7 +222,7 @@ jQuery(document).ready(function () {
                 commandIndex = -1;
             } else if (e.keyCode == 9) {
                 e.preventDefault();
-                autoCompleteInput();
+                autoCompleteInput(command);
             } else if (e.keyCode == 38 && commandIndex != commandHistory.length - 1) {
                 e.preventDefault();
                 commandIndex++;
@@ -199,32 +232,55 @@ jQuery(document).ready(function () {
                 $("#terminalInput").val(commandHistory[commandIndex]);
                 commandIndex--;
             } else if (e.keyCode == 67 && e.ctrlKey) {
-                $("#terminalInput").val('^C');
+                $("#terminalInput").val(command + '^C');
                 replaceInput();
                 addInput();
             }
         });
     }
 
-    function autoCompleteInput() {
+    function autoCompleteInput(command) {
         var command = $("#terminalInput").val();
         var input = $("#terminalInput").val().split(' ');
+        var validList = [];
         if (input.length === 2 && input[1] != "") {
-            files.forEach(function (file) {
+            files.forEach(function(file) {
                 if (file.substring(0, input[1].length) === input[1]) {
-                    $("#terminalInput").val(
-                        command +
-                        file.substring(input[1].length, file.length));
+                    validList.push(file);
                 }
             })
+            if (validList.length > 1) {
+                replaceInput();
+                validList.forEach(function(option) {
+                    $('#terminalOutput').append(option + '   ');
+                })
+                $('#terminalOutput').append('<br>');
+                addInput();
+                $("#terminalInput").val(command);
+            } else {
+                $("#terminalInput").val(
+                    command +
+                    validList[0].substring(input[1].length, validList[0].length));
+            }
         } else if (command.length) {
-            commandList.forEach(function (option) {
+            commandList.forEach(function(option) {
                 if (option.substring(0, input[0].length) === input[0]) {
-                    $("#terminalInput").val(
-                        command +
-                        option.substring(input[0].length, option.length));
+                    validList.push(option);
                 }
             })
+            if (validList.length > 1) {
+                replaceInput();
+                validList.forEach(function(option) {
+                    $('#terminalOutput').append(option + '   ');
+                })
+                $('#terminalOutput').append('<br>');
+                addInput();
+                $("#terminalInput").val(command);
+            }  else {
+                $("#terminalInput").val(
+                    command +
+                    validList[0].substring(input[0].length, validList[0].length));
+            }
         }
     }
 
@@ -232,6 +288,5 @@ jQuery(document).ready(function () {
 
 function showPage() {
     $('#mediaWarning').css('display', 'none');
-    $('#fullPage').css('display', 'block');
-    $('body').css('overflow', 'auto');
+    $('#mobilePage').css('display', 'block');
 }
