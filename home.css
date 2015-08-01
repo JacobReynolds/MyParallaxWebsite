@@ -1,6 +1,7 @@
 body {
     height: 2000vh;
     font-family: 'Khand', sans-serif;
+    overflow: hidden;
 }
 
 html {
