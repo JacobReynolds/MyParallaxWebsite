@@ -6,7 +6,7 @@ The full source can be viewed on my github.
 
 For the best easter egg experience: view in Chrome.
 -->
-<meta name="viewport" content="initial-scale=0.5, user-scalable=yes">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
 <html>
 
 <head>
@@ -14,19 +14,53 @@ For the best easter egg experience: view in Chrome.
     <link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css' rel="stylesheet" type="text/css" />
     <link href='home.css' rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Khand' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    <div id="mediaWarning">
+    <!--Due to the set up of the page, things get wonky when not viewing in a full browser window.
+    So I added a simplified page for viewing on mobile and small browser windows.-->
+    <div id="mobileWarning">
         <p>It appears you are viewing this webpage on a mobile device.
-            <br> For an enhanced viewing experience please visit on a computer.
+            <br>For an enhanced viewing experience please visit on a computer.
             <br>
-            <button onclick="showPage()">Just let me enter already</button>
+            <button onclick="showPage()">Enter mobile site</button>
         </p>
     </div>
-    <div id="mobilePage">
-        Test
+    <div id="screenSizeWarning">
+        <p>It appears you are viewing this webpage in a small browser window.
+            <br>For an enhanced viewing experience please expand your window.
+            <br>
+            <button onclick="showPage()">Enter simplified site</button>
+        </p>
     </div>
+
+    <div id="mobilePage">
+        <h1>Jake Reynolds</h1>
+        <section id="mobileAboutMe">
+            <h2>About me</h2>
+            <img src=mainPicture.jpg id="mobileMainPicture" />
+            <p>I am a software developer from Minneapolis, Mn.</p>
+            <p>I enjoy making products that automate my daily life interactions with the internet.
+                <br>Simple programs that check my grades at school, and programs that help limit my interaction with my phone while in public.</p>
+            <p> My other passions include artificial intelligence, penetration testing, web/software development, and dark-themed text editors.</p>
+        </section>
+        <section id="mobileProjects">
+            <h2>Projects</h2>
+            <p>I spend a lot of my down time coding, you can find a list of my projects on my <a href="http://www.github.com/jacobreynolds" target="_blank">Github</a>.</p>
+        </section>
+        <section id="mobileHobbies">
+            <h2>Hobbies</h2>
+            <p>I have many hobbies, one of which is finding new hobbies.
+                <br>In my free time when I'm not coding I enjoy riding motorcycles, scuba diving, solving rubik's cubes, and learning about the latest things in the tech world.</p>
+            <p></p>
+        </section>
+        <section id="mobileWebsites">
+            <h2>Web development</h2>
+            <p>I enjoy learning new web development techniques, and frameworks. For a full preview of this website please view it on a desktop.</p>
+        </section>
+    </div>
+
     <div id="fullPage">
         <div id="heightHolder"></div>
         <div id="terminal">
@@ -121,7 +155,6 @@ For the best easter egg experience: view in Chrome.
 
 <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
 <script type="text/javascript" src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-
 <script type="text/javascript" src='home.js'></script>
 
 

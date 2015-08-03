@@ -1,5 +1,5 @@
+//Global variables
 var commandList = ['cat', 'clear', 'continue', 'help', 'ls', 'man', 'ps', 'reverse'];
-
 var ls = 'list all files in the current directory.';
 var help = 'list possible terminal commands.';
 var cat = 'cat [filename] will print the contents of that file.';
@@ -8,22 +8,17 @@ this['continue'] = 'advance to the next section of the page.';
 var clear = 'clear all text in the terminal.';
 var reverse = 'reverse to the previous section of the page.';
 var man = 'describe a file, but you know that already don\'t you?';
-
+var ps = 'list the current processes';
 this['hobbies.txt'] = 'I have many hobbies, in these next few sections you will find a couple.';
-this['projects.txt'] = 'Here is a list of some pretty fun projects, more can be found of github.';
-
+this['projects.txt'] = 'Here is a list of some pretty fun projects, more can be found on github.';
 var files = ['hobbies.txt', 'projects.txt']
-
 var user = 'root@jakereynolds:~$';
-
 var commandHistory = [];
-
 var pageIndex = 0;
-
 var backgroundColorList = ['#141414', '#7F2F2A', '#66CC76', '#5E2957', '#52A7FF', '#CCC045'];
-
 var commandIndex = -1;
 
+//Detect the current browser for the 'ps' command
 var currentBrowser = function () {
     var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
     var is_explorer = navigator.userAgent.indexOf('MSIE') > -1;
@@ -50,22 +45,33 @@ var currentBrowser = function () {
         return 'Browser';
     }
 }
+
 jQuery(document).ready(function () {
     $(window).scroll(function (e) {
         parallaxScroll();
     });
+
+    //Check if there is a mobile browser, redirect to mobile page if so
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $('#mobileWarning').css('display', 'block');
+        $('#screenSizeWarning').css('display', 'none');
+        $('#fullPage').css('display', 'none');
+    }
 
     //Firefox has issues reloding scrollTop, this forces it.
     $("html,body").animate({
         scrollTop: 0
     }, 10);
 
+    //Add the terminal input
     addInput();
 
+    //Make it more realistic, anywhere they click in the terminal will focus the text field.
     $("#terminal").click(function () {
         $("#terminalInput").focus();
     })
 
+    //Give a little bit of 3D to the rubik's cube
     function parallaxScroll() {
         var scrolled = $(window).scrollTop();
         $('#cube-parallax').css('top', (0 - (scrolled * .9)) + 'px');
@@ -73,6 +79,7 @@ jQuery(document).ready(function () {
         $('#cube3-parallax').css('top', (0 - (scrolled * .7)) + 'px');
     }
 
+    //Parse and execute a command from the terminal
     function sendCommand(input) {
         var command = input.split(' ')[0];
         var input = input.split(' ')[1];
@@ -118,6 +125,7 @@ jQuery(document).ready(function () {
         }
     }
 
+    //Print out the description of a command
     function man(input) {
         if (commandList.indexOf(input) > -1) {
             replaceInput();
@@ -130,18 +138,34 @@ jQuery(document).ready(function () {
         }
     }
 
+    //Clear the terminal
     function clear() {
         replaceInput();
         $("#terminalOutput").empty();
         addInput();
     }
 
+    //Flash the terminal, to give the user a little notification to look at it.
+    function flashTerminal() {
+        setTimeout(function () {
+            $('#terminal').animate({
+                opacity: 0.6
+            }, 600);
+            $('#terminal').animate({
+                opacity: 1
+            }, 600);
+        }, 1000);
+    }
+
+    //Scroll down the page
+    //Execute page specific commands
     function scrollDown(command) {
         switch (pageIndex) {
         case 0:
+            flashTerminal();
             setTimeout(function () {
                 shake($('#cube'));
-            }, 2000);
+            }, 5000);
             printFile('hobbies.txt');
             break;
         case 1:
@@ -166,6 +190,7 @@ jQuery(document).ready(function () {
             }, 1000)
             break;
         case 3:
+            flashTerminal();
             printFile('projects.txt');
             break;
         case 5:
@@ -174,6 +199,7 @@ jQuery(document).ready(function () {
             addInput();
             return;
         }
+
         pageIndex++;
         var offset = $('#heightHolder').height();
         $('html, body').animate({
@@ -203,12 +229,14 @@ jQuery(document).ready(function () {
             addInput();
             return;
         }
+
         pageIndex--;
         $('html, body').animate({
             scrollTop: offset * pageIndex,
             backgroundColor: backgroundColorList[pageIndex]
         }, 1000);
 
+        //If we are going to the first page, center it again on the page
         switch (pageIndex) {
         case 0:
             $('#terminal').animate({
@@ -228,6 +256,7 @@ jQuery(document).ready(function () {
 
     }
 
+    //Shake the given element
     function shake(div) {
             var interval = 100;
             var distance = 10;
@@ -246,6 +275,7 @@ jQuery(document).ready(function () {
 
         } //shake        
 
+    //Print the given file, usually used with "cat"
     function printFile(file) {
         if (this[file]) {
             replaceInput();
@@ -258,6 +288,7 @@ jQuery(document).ready(function () {
         }
     }
 
+    //Used for "help", prints the valid terminal commands
     function printList(list) {
         replaceInput();
         list.forEach(function (result) {
@@ -266,6 +297,7 @@ jQuery(document).ready(function () {
         addInput();
     }
 
+    //Used for "ls", prints the files in the current directory
     function printFiles() {
         replaceInput();
         files.forEach(function (file) {
@@ -275,12 +307,14 @@ jQuery(document).ready(function () {
         addInput();
     }
 
+    //Remove the input and add the input value to the output field
     function replaceInput() {
         var value = $("#terminalInput").val();
         $("#terminalInput").remove();
         $("#terminalOutput").append(value + '<br>');
     }
 
+    //Add a new input to the terminal
     function addInput() {
         $("#terminalOutput").append(user + ' <input id="terminalInput" spellcheck="false"></input>');
         $("#terminalInput").focus();
@@ -309,6 +343,7 @@ jQuery(document).ready(function () {
         });
     }
 
+    //Used for tabbing, will complete the valid command
     function autoCompleteInput(command) {
         var command = $("#terminalInput").val();
         var input = $("#terminalInput").val().split(' ');
@@ -357,7 +392,13 @@ jQuery(document).ready(function () {
 
 });
 
+
+//Shows the mobile/small screen page
 function showPage() {
-    $('#mediaWarning').css('display', 'none');
+    $('#mobileWarning').css('display', 'none');
+    $('#screenSizeWarning').css('display', 'none');
     $('#mobilePage').css('display', 'block');
+    $('html').css('backgroundColor', '#7f2f2a');
+    $('html').css('overflow', 'auto');
+    $('body').css('height', 'auto');
 }
