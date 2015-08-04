@@ -47,15 +47,21 @@ var currentBrowser = function () {
     }
 }
 
-$('#experience').ready(function () {
+window.onload = function () {
+    if (currentBrowser() === 'Firefox' || 'Internet Explorer') {
+        scrollTo(0, 0);
+    }
+}
+
+$(document).ready(function () {
     $(window).scroll(function (e) {
         parallaxScroll();
     });
 
-    //Firefox has issues reloding scrollTop, this forces it.
-    $("html,body").animate({
-        scrollTop: 0
-    }, 10);
+    addInput();
+
+    //IE sucks and shows the input even though it's opacity 0
+    $("#terminalInput").blur();
 
     pageLoad = true;
     $("#cubeWrapper").waypoint(function (event) {
@@ -161,7 +167,6 @@ $('#experience').ready(function () {
     }
 
     //Add the terminal input
-    addInput();
 
     //Make it more realistic, anywhere they click in the terminal will focus the text field.
     $("#terminal").click(function () {

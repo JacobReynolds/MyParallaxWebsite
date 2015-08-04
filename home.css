@@ -656,7 +656,11 @@ div#project h1 {
 }
 
 div#project h2 {
-    line-height: 15px;
+    line-height: 5px;
+}
+
+div#project p {
+    font-size: 1vw;
 }
 
 div#project footer {
