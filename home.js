@@ -51,6 +51,12 @@ $('#experience').ready(function () {
     $(window).scroll(function (e) {
         parallaxScroll();
     });
+
+    //Firefox has issues reloding scrollTop, this forces it.
+    $("html,body").animate({
+        scrollTop: 0
+    }, 10);
+
     pageLoad = true;
     $("#cubeWrapper").waypoint(function (event) {
         if (event === 'down' && !pageLoad) {
