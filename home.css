@@ -119,13 +119,22 @@ div#chooser {
         
         z-index: 2;
     }
+    #mobilePage p {
+        font-size: 1vh !important;
+    }
+}
+
+.mobile {
+    display: inline-block;
+    width: 20vw;
+    height: 30vh;
+    position: absolute;
 }
 
 #mobilePage {
     color: white;
     height: auto;
     display: none;
-    width: 100%;
     margin: auto;
     opacity: 0;
 }
@@ -136,27 +145,31 @@ div#chooser {
 }
 
 #mobilePage h2 {
-    font-family: 'Sansita One', cursive;
     text-align: center;
 }
 
 #mobilePage section {
-    height: 100vh;
     padding: 10px;
     margin-top: 10px;
-    position: relative;
+}
+
+#mobilePage p {
+    font-size: 2vh;
+    color: white;
 }
 
 #mobileHeader h1 {
     text-align: center;
     line-height: 5px;
     text-shadow: 2px 2px #000;
+    font-size: 7vw;
 }
 
 #mobileHeader h2 {
-    font-family: 'Sansita One', cursive;
     text-align: center;
     text-shadow: 2px 2px #000;
+    font-size: 4vw;
+    line-height: 5px;
 }
 
 #mobileHeader {
@@ -164,36 +177,39 @@ div#chooser {
     text-align: center;
 }
 
-#mobileHeader h1 {
-    font-size: 5vw;
+#mobileContact {
+    font-size: 2vw;
 }
 
-#mobileContact {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+#mobilePage footer {
+    text-align: center;
 }
+
+#mobileContact a {
+    color: bisque;
+    font-size: 2vw;
+    display: inline-block;
+    position: relative;
+}
+/*This is the longest section,
+set position relative so the page height will be correct*/
 
 #mobileAboutMe {
     color: white;
-    background: #70417F;
+    position: relative !important;
 }
 
 #mobileAboutMe h1 {
-    font-size: 4vw;
-    color: white;
-    text-align: right;
-}
-
-#mobileAboutMe p {
-    font-size: 2vw;
+    background: #7E1E7F;
+    height: 5vw;
+    font-size: 3vw;
     line-height: 5vw;
     color: white;
-    text-align: right;
+    text-align: center;
 }
 
 #mobileMainPicture {
-    height: 200px;
+    width: 15vw;
     border-radius: 50%;
     display: block;
     margin-left: auto;
@@ -201,51 +217,43 @@ div#chooser {
     box-shadow: 2px 2px 2px #000;
 }
 
-#mobileContact {}
-
 #mobileHobbies {
-    background: #122F4C;
+    left: 25vw;
 }
 
 #mobileHobbies h1 {
-    font-size: 4vw;
-    color: white;
-    text-align: left;
-}
-
-#mobileHobbies p {
-    font-size: 2vw;
+    background: #122F4C;
+    height: 5vw;
     line-height: 5vw;
+    font-size: 3vw;
     color: white;
-    text-align: left;
+    text-align: center;
 }
 
-#mobileProjects {}
+#mobileProjects {
+    left: 50vw;
+}
 
 #mobileProjects h1 {
-    font-size: 4vw;
-    color: white;
-    text-align: left;
-}
-
-#mobileProjects p {
-    font-size: 2vw;
+    height: 5vw;
+    background: #76A340;
+    font-size: 3vw;
     line-height: 5vw;
     color: white;
-    text-align: left;
+    text-align: center;
+}
+
+#mobileWebsites {
+    left: 75vw;
 }
 
 #mobileWebsites h1 {
-    font-size: 4vw;
-    color: white;
-    text-align: right;
-}
-
-#mobileWebsites p {
-    font-size: 2vw;
+    height: 5vw;
+    background: #CCC045;
+    font-size: 3vw;
     line-height: 5vw;
     color: white;
-    text-align: right;
+    text-align: center;
 }
 
 div#fullPage {
@@ -258,6 +266,26 @@ div#fullPage {
 
 div#heightHolder {
     height: 100vh;
+    display: none;
+}
+
+img#upArrow {
+    height: 5vw;
+    border-radius: 50%;
+    position: fixed;
+    left: 47.5vw;
+    top: 2vh;
+    z-index: 2;
+    display: none;
+}
+
+img#downArrow {
+    height: 5vw;
+    border-radius: 50%;
+    position: fixed;
+    left: 47.5vw;
+    bottom: 2vh;
+    z-index: 2;
     display: none;
 }
 /*Terminal*/
@@ -478,7 +506,7 @@ div#divingWrapper {
 div#diveTextWrapper {
     position: relative;
     left: 60vh;
-    top: 100vh;
+    top: 110vh;
 }
 
 div#diving {
@@ -639,7 +667,7 @@ div#projectWrapper {
 
 div#project {
     position: absolute;
-    top: 40vh;
+    top: 25vh;
     height: 80vh;
     width: 60vh;
     background: mintcream;
@@ -678,7 +706,7 @@ div#thankYouWrapper {
 
 div#thankYou {
     position: absolute;
-    top: 70vh;
+    top: 40vh;
     padding-top: 10px;
 }
 

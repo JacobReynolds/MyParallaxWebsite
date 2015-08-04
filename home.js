@@ -47,6 +47,62 @@ var currentBrowser = function () {
     }
 }
 
+function goUp() {
+    if (!allowClick)
+        return;
+    allowClick = false;
+    pageIndex--;
+    if (pageIndex === 0) {
+        $('#upArrow').animate({
+            opacity: 0
+        }, 300)
+    } else if (pageIndex === 4) {
+        $('#downArrow').animate({
+            opacity: 1
+        }, 300)
+    }
+    var height = $('#heightHolder').height();
+    var top = $('body').scrollTop();
+    $('html, body').animate({
+        scrollTop: top - height
+    }, 750);
+    //If they're in such a hurry to click
+    //they can wait a bit
+    setTimeout(function () {
+        allowClick = true;
+    }, 1500)
+
+}
+var allowClick = true;
+
+function goDown() {
+    if (!allowClick)
+        return;
+    allowClick = false;
+    pageIndex++
+    if (pageIndex === 5) {
+        $('#downArrow').animate({
+            opacity: 0
+        }, 300)
+    } else if (pageIndex === 1) {
+        $('#upArrow').css('opacity', '0');
+        $('#upArrow').css('display', 'block');
+        $('#upArrow').animate({
+            opacity: 1
+        })
+    }
+    var height = $('#heightHolder').height();
+    var top = $('body').scrollTop();
+    $('html, body').animate({
+        scrollTop: top + height
+    }, 750);
+    //If they're in such a hurry to click
+    //they can wait a bit
+    setTimeout(function () {
+        allowClick = true;
+    }, 1500)
+}
+
 window.onload = function () {
     if (currentBrowser() === 'Firefox' || 'Internet Explorer') {
         scrollTo(0, 0);
@@ -161,10 +217,11 @@ $(document).ready(function () {
 
     //Check if there is a mobile browser, redirect to mobile page if so
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        $('#mobileWarning').css('display', 'block');
         $('#screenSizeWarning').css('display', 'none');
+        $('#mobileWarning').css('display', 'block');
         $('#experience').remove();
         $('#fullPage').remove();
+
     }
 
     //Add the terminal input
@@ -217,7 +274,8 @@ $(document).ready(function () {
             clear();
             break;
         case 'man':
-            man(secondary);
+            if (secondary)
+                man(secondary);
             break;
         case 'ps':
             //The input has issues with multiple spaces, so we use &nbsp;
@@ -233,7 +291,11 @@ $(document).ready(function () {
     }
 
     function unlockPage() {
-        $('body').css('overflow-y', 'auto');
+        $('#downArrow').css('opacity', '0');
+        $('#downArrow').css('display', 'block');
+        $('#downArrow').animate({
+            opacity: 1
+        })
         replaceInput();
         addInput();
     }
@@ -405,7 +467,7 @@ $(document).ready(function () {
                 $('#terminalOutput').append('<br>');
                 addInput();
                 $("#terminalInput").val(command);
-            } else {
+            } else if (validList.length === 1) {
                 $("#terminalInput").val(
                     command +
                     validList[0].substring(input[0].length, validList[0].length));

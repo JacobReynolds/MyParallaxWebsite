@@ -38,39 +38,44 @@ For the best easter egg experience: view in Chrome.
     <div id="mobilePage">
         <section id="mobileHeader">
             <h1>Jake Reynolds</h1>
-            <img id="mobileMainPicture" src="mainPicture.jpg" />
             <h2>Developer</h2>
-            <div id="mobileContact">
-                <a href="mailto:reyno511@umn.edu" target="_blank">Contact Me</a> |
-                <a href="https://www.github.com/JacobReynolds" target="_blank">Github</a> |
-                <a href="https://www.linkedin.com/pub/jacob-reynolds/91/5b0/93" target="_blank">LinkedIn</a>
-            </div>
+            <img id="mobileMainPicture" src="mainPicture.jpg" />
+
         </section>
-        <section id="mobileAboutMe">
+        <section id="mobileAboutMe" class="mobile">
             <h1>About me</h1>
             <p>I am a software developer from Minneapolis, Mn.</p>
             <p>I enjoy making products that automate my daily life interactions with the internet.
                 <br>Simple programs that check my grades at school, and programs that help limit my interaction with my phone while in public.</p>
             <p> My other passions include artificial intelligence, penetration testing, web/software development, and dark-themed text editors.</p>
         </section>
-        <section id="mobileProjects">
+        <section id="mobileProjects" class="mobile">
             <h1>Projects</h1>
             <p>I spend a lot of my down time coding, you can find a list of my projects on my <a href="http://www.github.com/jacobreynolds" target="_blank">Github</a>.</p>
         </section>
-        <section id="mobileHobbies">
+        <section id="mobileHobbies" class="mobile">
             <h1>Hobbies</h1>
             <p>I have many hobbies, one of which is finding new hobbies.
                 <br>In my free time when I'm not coding I enjoy riding motorcycles, scuba diving, solving rubik's cubes, and learning about the latest things in the tech world.</p>
             <p></p>
         </section>
-        <section id="mobileWebsites">
+        <section id="mobileWebsites" class="mobile">
             <h1>Web development</h1>
-            <p>I enjoy learning new web development techniques, and frameworks. For a full preview of this website please view it on a desktop.</p>
+            <p>I enjoy learning new web development techniques, and frameworks. My current favorite is AngularJS.</p>
         </section>
+        <footer>
+            <div id="mobileContact">
+                <a href="mailto:reyno511@umn.edu" target="_blank">Contact Me</a> |
+                <a href="https://www.github.com/JacobReynolds" target="_blank">Github</a> |
+                <a href="https://www.linkedin.com/pub/jacob-reynolds/91/5b0/93" target="_blank">LinkedIn</a>
+            </div>
+        </footer>
     </div>
 
     <div id="fullPage">
         <div id="heightHolder"></div>
+        <img id="upArrow" onClick="goUp()" src="up-arrow.png" />
+        <img id="downArrow" onClick="goDown()" src="down-arrow.png" />
         <div id="terminal">
             <div id="fileBar"><span>root@jakereynolds:~</span>
             </div>
