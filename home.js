@@ -163,7 +163,8 @@ $(document).ready(function () {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         $('#mobileWarning').css('display', 'block');
         $('#screenSizeWarning').css('display', 'none');
-        $('#fullPage').css('display', 'none');
+        $('#experience').remove();
+        $('#fullPage').remove();
     }
 
     //Add the terminal input
