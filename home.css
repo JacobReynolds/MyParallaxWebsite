@@ -1,11 +1,87 @@
 body {
-    height: 2000vh;
     font-family: 'Khand', sans-serif;
     overflow: hidden;
+    background: #141414;
+    margin: 0;
 }
 
-html {
-    background: #141414;
+div#experience {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Sansita One', cursive;
+    text-align: center;
+    line-height: 100vh;
+}
+
+h1#experienceHeader {
+    position: absolute;
+    left: 20vw;
+    line-height: 0px;
+    text-align: center;
+    height: 80px;
+    font-size: 5vw;
+    padding-top: 40px;
+    color: bisque;
+}
+/*There's a simple plan pun in here somewhere*/
+
+div#simplified span {
+    font-size: 6vw;
+    padding-left: 30px;
+}
+
+div#experience span {
+    font-size: 6vw;
+    padding-left: 30px;
+}
+
+div#simplified {
+    height: 100vh;
+    position: absolute;
+    width: 50%;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+div#simplified:hover {
+    background-color: white;
+    opacity: 0.25;
+}
+
+div#programmer {
+    height: 100vh;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+div#programmer:hover {
+    background-color: white;
+    opacity: 0.25;
+}
+
+div#chooser {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: bisque;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    line-height: 100px;
+    margin: auto;
+    border-radius: 50%;
+    font-size: 48px;
+    font-family: 'Chango', cursive;
 }
 
 #mobileWarning {
@@ -30,11 +106,18 @@ html {
 
 @media screen and (max-width: 750px) {
     #fullPage {
-        display: none;
+        opacity: 0;
+    }
+    #experience {
+        opacity: 0;
     }
     #screenSizeWarning {
         top: auto;
         display: block;
+        /*Since the other pages are only invisible, not non-existant
+        we have to increase this z-index*/
+        
+        z-index: 2;
     }
 }
 
@@ -42,47 +125,136 @@ html {
     color: white;
     height: auto;
     display: none;
-    width: 75%;
+    width: 100%;
     margin: auto;
+    opacity: 0;
 }
 
 #mobilePage h1 {
     text-align: center;
+    line-height: 5px;
 }
 
 #mobilePage h2 {
     font-family: 'Sansita One', cursive;
-    display: inline;
+    text-align: center;
 }
 
 #mobilePage section {
-    margin: auto;
-    height: auto;
-    border-radius: 10px;
-    width: 75%;
-    padding: 5px;
+    height: 100vh;
+    padding: 10px;
     margin-top: 10px;
     position: relative;
 }
 
+#mobileHeader h1 {
+    text-align: center;
+    line-height: 5px;
+    text-shadow: 2px 2px #000;
+}
+
+#mobileHeader h2 {
+    font-family: 'Sansita One', cursive;
+    text-align: center;
+    text-shadow: 2px 2px #000;
+}
+
+#mobileHeader {
+    padding-top: 20vh;
+    text-align: center;
+}
+
+#mobileHeader h1 {
+    font-size: 5vw;
+}
+
+#mobileContact {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #mobileAboutMe {
-    color: black;
-    background: #19FF75;
+    color: white;
+    background: #70417F;
+}
+
+#mobileAboutMe h1 {
+    font-size: 4vw;
+    color: white;
+    text-align: right;
+}
+
+#mobileAboutMe p {
+    font-size: 2vw;
+    line-height: 5vw;
+    color: white;
+    text-align: right;
 }
 
 #mobileMainPicture {
-    height: 110px;
+    height: 200px;
     border-radius: 50%;
-    right: 5px;
-    top: 5px;
-    display: inline;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px #000;
 }
 
+#mobileContact {}
+
 #mobileHobbies {
-    background: #51a7ff;
+    background: #122F4C;
+}
+
+#mobileHobbies h1 {
+    font-size: 4vw;
+    color: white;
+    text-align: left;
+}
+
+#mobileHobbies p {
+    font-size: 2vw;
+    line-height: 5vw;
+    color: white;
+    text-align: left;
 }
 
 #mobileProjects {}
+
+#mobileProjects h1 {
+    font-size: 4vw;
+    color: white;
+    text-align: left;
+}
+
+#mobileProjects p {
+    font-size: 2vw;
+    line-height: 5vw;
+    color: white;
+    text-align: left;
+}
+
+#mobileWebsites h1 {
+    font-size: 4vw;
+    color: white;
+    text-align: right;
+}
+
+#mobileWebsites p {
+    font-size: 2vw;
+    line-height: 5vw;
+    color: white;
+    text-align: right;
+}
+
+div#fullPage {
+    /*If setting display to none, waypoints.js fires on page load setting opacity to 0 will add a nice animation as well on click. This page is removed in the JS if they choose the simplified experience*/
+    
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+}
 
 div#heightHolder {
     height: 100vh;
@@ -151,6 +323,12 @@ div#terminal {
 }
 /*End terminal*/
 
+div#cubeWrapper {
+    top: 50vh;
+    position: relative;
+    height: 150vh;
+}
+
 div#cube3-parallax {
     position: fixed;
     z-index: 1;
@@ -189,7 +367,7 @@ div#cube-parallax div {
 }
 
 div#cube {
-    top: 120vh;
+    margin-top: 120vh;
     left: 60vw;
 }
 
@@ -229,35 +407,44 @@ div#cube3 {
 /*End cubes*/
 /*Motorcycles*/
 
+div#motorcycleWrapper {
+    margin-top: -50vh;
+    position: relative;
+    height: 150vh;
+}
+
 div#motorcycle {
     background: url('http://www.clker.com/cliparts/k/4/0/f/7/7/high-resolution-gear-md.png');
     background-size: 250px 250px;
     background-repeat: no-repeat;
-    position: absolute;
+    position: relative;
+    /*Issues with z-index and hover*/
+    
+    z-index: 1;
     width: 256px;
     height: 256px;
-    top: 220vh;
+    top: 100vh;
     left: 40vw;
     opacity: 0;
     filter: alpha(opacity=0);
 }
 
 div#motorcycle:hover ~ div#motorcycle2 {
-    -webkit-transform: translateX(80vh) rotate(180deg);
-    -ms-transform: translateX(80vh) rotate(180deg);
-    transform: translateX(80vh) rotate(180deg);
+    -webkit-transform: translateX(43vw) rotate(180deg);
+    -ms-transform: translateX(43vw) rotate(180deg);
+    transform: translateX(43vw) rotate(180deg);
 }
 
 div#motorcycle:hover ~ div#motorcycleText {
-    -webkit-transform: translateX(80vh);
-    -ms-transform: translateX(80vh);
-    transform: translateX(80vh);
+    -webkit-transform: translateX(43vw);
+    -ms-transform: translateX(43vw);
+    transform: translateX(43vw);
 }
 
 div#motorcycle2 {
     background: url('http://www.clker.com/cliparts/k/4/0/f/7/7/high-resolution-gear-md.png');
     background-size: 350px 350px;
-    top: 220vh;
+    top: 100vh;
     width: 350px;
     height: 350px;
     left: -50vh;
@@ -268,7 +455,7 @@ div#motorcycle2 {
 
 div#motorcycleText {
     text-align: center;
-    top: 220vh;
+    top: 100vh;
     position: absolute;
     width: 350px;
     height: 350px;
@@ -280,11 +467,18 @@ div#motorcycleText {
 }
 /*End motorcycles*/
 /*Diving*/
+/*Want this one a little taller*/
 
-div#divingWrap {
-    position: absolute;
-    top: 350vh;
-    left: 60vw;
+div#divingWrapper {
+    margin-top: -50vh;
+    position: relative;
+    height: 200vh;
+}
+
+div#diveTextWrapper {
+    position: relative;
+    left: 60vh;
+    top: 100vh;
 }
 
 div#diving {
@@ -437,9 +631,15 @@ div#diveText3 {
 /*End diving*/
 /*Projects*/
 
+div#projectWrapper {
+    position: relative;
+    margin-top: -50vh;
+    height: 150vh;
+}
+
 div#project {
     position: absolute;
-    top: 410vh;
+    top: 40vh;
     height: 80vh;
     width: 60vh;
     background: mintcream;
@@ -466,10 +666,16 @@ div#project footer {
 /*End projects*/
 /*Thank you*/
 
+div#thankYouWrapper {
+    position: relative;
+    margin-top: -50vh;
+    height: 150vh;
+}
+
 div#thankYou {
     position: absolute;
-    top: 500vh;
-    padding-top: 60px;
+    top: 70vh;
+    padding-top: 10px;
 }
 
 img#mainPicture {

@@ -15,6 +15,7 @@ For the best easter egg experience: view in Chrome.
     <link href='home.css' rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Khand' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Chango' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -24,39 +25,46 @@ For the best easter egg experience: view in Chrome.
         <p>It appears you are viewing this webpage on a mobile device.
             <br>For an enhanced viewing experience please visit on a computer.
             <br>
-            <button onclick="showPage()">Enter mobile site</button>
+            <button onclick="showSimplified()">Enter mobile site</button>
         </p>
     </div>
     <div id="screenSizeWarning">
         <p>It appears you are viewing this webpage in a small browser window.
             <br>For an enhanced viewing experience please expand your window.
             <br>
-            <button onclick="showPage()">Enter simplified site</button>
+            <button onclick="showSimplified()">Enter simplified site</button>
         </p>
     </div>
-
     <div id="mobilePage">
-        <h1>Jake Reynolds</h1>
+        <section id="mobileHeader">
+            <h1>Jake Reynolds</h1>
+            <img id="mobileMainPicture" src="mainPicture.jpg" />
+            <h2>Developer</h2>
+            <div id="mobileContact">
+                <a href="mailto:reyno511@umn.edu" target="_blank">Contact Me</a> |
+                <a href="https://www.github.com/JacobReynolds" target="_blank">Github</a> |
+                <a href="https://www.linkedin.com/pub/jacob-reynolds/91/5b0/93" target="_blank">LinkedIn</a>
+            </div>
+        </section>
         <section id="mobileAboutMe">
-            <h2>About me</h2>
-            <img src=mainPicture.jpg id="mobileMainPicture" />
+            <h1>About me</h1>
             <p>I am a software developer from Minneapolis, Mn.</p>
             <p>I enjoy making products that automate my daily life interactions with the internet.
                 <br>Simple programs that check my grades at school, and programs that help limit my interaction with my phone while in public.</p>
             <p> My other passions include artificial intelligence, penetration testing, web/software development, and dark-themed text editors.</p>
         </section>
         <section id="mobileProjects">
-            <h2>Projects</h2>
+            <h1>Projects</h1>
             <p>I spend a lot of my down time coding, you can find a list of my projects on my <a href="http://www.github.com/jacobreynolds" target="_blank">Github</a>.</p>
         </section>
         <section id="mobileHobbies">
-            <h2>Hobbies</h2>
+            <h1>Hobbies</h1>
             <p>I have many hobbies, one of which is finding new hobbies.
                 <br>In my free time when I'm not coding I enjoy riding motorcycles, scuba diving, solving rubik's cubes, and learning about the latest things in the tech world.</p>
             <p></p>
         </section>
         <section id="mobileWebsites">
-            <h2>Web development</h2>
+            <h1>Web development</h1>
             <p>I enjoy learning new web development techniques, and frameworks. For a full preview of this website please view it on a desktop.</p>
         </section>
     </div>
@@ -70,92 +78,115 @@ For the best easter egg experience: view in Chrome.
                 <span id="welcomeMessage">
             /*****************************
             <br>Welcome!
-            <br>My name's Alvin, and I'll be your guide today.
-            <br>Type "continue" to advance the page,
-            <br>and have some linux fun to explore other features.
-            <br>This website is currently under development,
-            <br>any suggestions can be emailed to reyno511@umn.edu
-            <br>Let's get started.
+            <br>Unlock the page to begin.
             <br>*****************************/
             <br></span>
             </div>
         </div>
-        <div id="cube-parallax">
-            <div id="cube" class="cube">
-                <div id="cubeText"><small><br><br><br>Once I decided to study Computer Science I began to love coding and puzzles. Rubik's cubes fascinated me with their 43,252,003,274,489,856,000 possible combinations.</small>
+        <div id="cubeWrapper">
+            <div id="cube-parallax">
+                <div id="cube" class="cube">
+                    <div id="cubeText"><small><br><br><br>Once I decided to study Computer Science I began to love coding and puzzles. Rubik's cubes fascinated me with their 43,252,003,274,489,856,000 possible combinations.</small>
+                    </div>
+                </div>
+            </div>
+            <div id="cube2-parallax">
+                <div id="cube2" class="cube">
+                    <div id="cubeText"><small><br><br><br>Most advanced solving methods require 4 stages, with over 150 possible alogorithms total.  My personal record is currently<br> 20.82 seconds.</small>
+                    </div>
+                </div>
+            </div>
+            <div id="cube3-parallax">
+                <div id="cube3" class="cube">
+                    <div id="cubeText"><small><br><br><br>I own a total of 20 different cubes, ranging from 2x2-7x7 dimensions, and 4-12 sides.  Cubing is a cheap hobby, making it perfect for collectors.</small>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="cube2-parallax">
-            <div id="cube2" class="cube">
-                <div id="cubeText"><small><br><br><br>Most advanced solving methods require 4 stages, with over 150 possible alogorithms total.  My personal record is currently<br> 20.82 seconds.</small>
+        <div id="motorcycleWrapper">
+            <div id="motorcycle"></div>
+            <div id="motorcycle2"></div>
+            <div id="motorcycleText" style="padding-top: 85px;">
+                <br>I became interested
+                <br>in motorcycles once I
+                <br> turned 15, and I gained a pretty
+                <br> fun hobby. I currently own a
+                <br>2006 Kawasaki Z1000.
+            </div>
+        </div>
+        <div id="divingWrapper">
+            <!--A bit ugly here with so many wrappers.
+                The dive text needs to be behind the diving div,
+                this is the best way for them to inherit positions-->
+            <div id="diveTextWrapper">
+                <div id="diving"></div>
+                <div id="diveText" class="dive">
+                    <br>
+                    <br>There are many amazing
+                    <br> things about scuba diving, but the
+                    <br> alienness of it all is what I loved. Because
+                    <br>of that I was able to work as a scuba diver for two summers in college, and greatly expand my abilities as a diver.
                 </div>
+                <div id="diveText2" class="dive"></div>
+                <div id="diveText3" class="dive"></div>
             </div>
         </div>
-        <div id="cube3-parallax">
-            <div id="cube3" class="cube">
-                <div id="cubeText"><small><br><br><br>I own a total of 20 different cubes, ranging from 2x2-7x7 dimensions, and 4-12 sides.  Cubing is a cheap hobby, making it perfect for collectors.</small>
-                </div>
-            </div>
-        </div>
-        <div id="motorcycle"></div>
-        <div id="motorcycle2">
-        </div>
-        <div id="motorcycleText" style="padding-top: 85px;">
-            <br>I became interested
-            <br>in motorcycles once I
-            <br> turned 15, and I gained a pretty
-            <br> fun hobby. I currently own a
-            <br>2006 Kawasaki Z1000.
-        </div>
-        <div id="divingWrap">
-            <div id="diving"></div>
-            <div id="diveText" class="dive">
-                <br>
-                <br>There are many amazing
-                <br> things about scuba diving, but the
-                <br> alienness of it all is what I loved. Because
-                <br>of that I was able to work as a scuba diver for two summers in college, and greatly expand my abilities as a diver.
-            </div>
-            <div id="diveText2" class="dive"></div>
-            <div id="diveText3" class="dive"></div>
-        </div>
-        <div id="project">
-            <h1>Projects</h1>
-            <span><h2><a href="http://www.github.com/jacobreynolds/nextrain" target="_blank">NexTrain</a> (Python)</h2>
+        <div id="projectWrapper">
+            <div id="project">
+                <h1>Projects</h1>
+                <span><h2><a href="http://www.github.com/jacobreynolds/nextrain" target="_blank">NexTrain</a> (Python)</h2>
                     A notification system to let students know when the next train will be after they get out of class.  I use this for going between East and West bank, when I only have 15 minutes.  This application helps me know which will be faster.
             </span>
-            <br>
-            <span><h2><a href="http://www.github.com/jacobreynolds/moodlechecker" target="_blank">MoodleChecker</a> (Python)</h2>
+                <br>
+                <span><h2><a href="http://www.github.com/jacobreynolds/moodlechecker" target="_blank">MoodleChecker</a> (Python)</h2>
                     An automated grade checker that will notify students when teachers update their grades.  This has saved my F5 key on many occassions, especially around midterms and finals.
                </span>
-            <br>
-            <span><h2><a href="http://www.github.com/jacobreynolds/connectfour" target="_blank">ConnectFour</a> (Java)</h2>
+                <br>
+                <span><h2><a href="http://www.github.com/jacobreynolds/connectfour" target="_blank">ConnectFour</a> (Java)</h2>
                     The first Java application I wrote that wasn't for school.  A simple text-based program ran in the terminal to play a 2-player game of chess.
                </span>
-            <br>
-            <span><h2><a href="http://www.github.com/jacobreynolds/mywebsite" target="_blank">MyWebsite</a> (AngularJS)</h2>
+                <br>
+                <span><h2><a href="http://www.github.com/jacobreynolds/mywebsite" target="_blank">MyWebsite</a> (AngularJS)</h2>
                     My first try at a personal website using AngularJS.  Eventually changed to using this design, but it was a very fun project to work on.
                </span>
-            <footer>
-                A full collection of my projects can be found on my <a href="http://github.com/jacobreynolds">Github</a>.</footer>
+                <footer>
+                    A full collection of my projects can be found on my <a href="http://github.com/jacobreynolds">Github</a>.</footer>
+            </div>
         </div>
-        <div id="thankYou">
-            <img id="mainPicture" src="mainPicture.jpg" />
-            <h1>Jake Reynolds</h1>
-            <p>
-                Thanks for visiting my site! Any questions or comments can be e-mailed to reyno511@umn.edu.
-                <br> Make sure to check out my <a href="http://github.com/jacobreynolds">Github</a>.
-                <br> Type "reverse" to make your way back up the page.
-            </p>
+        <div id="thankYouWrapper">
+            <div id="thankYou">
+                <img id="mainPicture" src="mainPicture.jpg" />
+                <h1>Jake Reynolds</h1>
+                <p>
+                    Thanks for visiting my site! Any questions or comments can be e-mailed to reyno511@umn.edu.
+                    <br> Make sure to check out my <a href="http://github.com/jacobreynolds">Github</a>.
+                    <br> Type "reverse" to make your way back up the page.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--Due to waypoints, having this at the top would cause the fullpage to load lower
+        making the waypoints at incorrect spots.
+        Position: absolute did not seem to fix the issue.-->
+    <div id="experience">
+        <h1 id="experienceHeader">Choose your experience:</h1>
+        <div id="simplified" onclick="showSimplified()">
+            <span>User</span>
+        </div>
+        <div id="programmer" onClick="showProgrammer()">
+            <span>Programmer</span>
+        </div>
+        <div id="chooser">
+            &lt; &gt;
         </div>
     </div>
 </body>
 
 
-<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
-<script type="text/javascript" src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-<script type="text/javascript" src='home.js'></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+<script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+<script type='text/javascript' src='home.js'></script>
+<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.4/waypoints.min.js'></script>
 
 
 </html>

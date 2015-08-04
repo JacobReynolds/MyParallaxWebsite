@@ -1,23 +1,24 @@
 //Global variables
-var commandList = ['cat', 'clear', 'continue', 'help', 'ls', 'man', 'ps', 'reverse'];
+var commandList = ['cat', 'clear', 'help', 'ls', 'man', 'ps', 'reverse'];
 var ls = 'list all files in the current directory.';
 var help = 'list possible terminal commands.';
 var cat = 'cat [filename] will print the contents of that file.';
-//Not too worried about this conflicting with the built-in continue, since I do not use it.
-this['continue'] = 'advance to the next section of the page.';
 var clear = 'clear all text in the terminal.';
 var reverse = 'reverse to the previous section of the page.';
 var man = 'describe a file, but you know that already don\'t you?';
 var ps = 'list the current processes';
 this['hobbies.txt'] = 'I have many hobbies, in these next few sections you will find a couple.';
-this['projects.txt'] = 'Here is a list of some pretty fun projects, more can be found on github.';
+this['projects.txt'] = 'A couple sections below is a list of some pretty fun projects, more can be found on github.';
+this['.unlock.txt'] = 'Type "continue" to unlock the page';
 var files = ['hobbies.txt', 'projects.txt']
+var allFiles = ['.unlock.txt', 'hobbies.txt', 'projects.txt']
 var user = 'root@jakereynolds:~$';
 var commandHistory = [];
 var pageIndex = 0;
 var backgroundColorList = ['#141414', '#7F2F2A', '#66CC76', '#5E2957', '#52A7FF', '#CCC045'];
 var commandIndex = -1;
 
+var pageLoad;
 //Detect the current browser for the 'ps' command
 var currentBrowser = function () {
     var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
@@ -46,9 +47,104 @@ var currentBrowser = function () {
     }
 }
 
-jQuery(document).ready(function () {
+$('#experience').ready(function () {
     $(window).scroll(function (e) {
         parallaxScroll();
+    });
+    pageLoad = true;
+    $("#cubeWrapper").waypoint(function (event) {
+        if (event === 'down' && !pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[1]
+            }, 1000);
+            setTimeout(function () {
+                shake($('#cube'));
+            }, 1000);
+        } else if (!pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[0]
+            }, 1000)
+        }
+    });
+
+    $("#motorcycleWrapper").waypoint(function (event) {
+        if (event === 'down' && !pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[2]
+            }, 1000);
+            setTimeout(function () {
+                $('#motorcycle').animate({
+                    opacity: 1
+                }, 1000)
+            }, 1000)
+        } else if (!pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[1]
+            }, 1000);
+            setTimeout(function () {
+                $('#motorcycle').animate({
+                    opacity: 0
+                }, 1000)
+            }, 1000)
+        }
+    });
+
+    $("#divingWrapper").waypoint(function (event) {
+        if (event === 'down' && !pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[3]
+            }, 1000);
+            setTimeout(function () {
+                $('#diveText').animate({
+                        top: -320,
+                    }, 2000),
+                    $('#diveText2').animate({
+                        top: -70,
+                    }, 2000),
+                    $('#diveText3').animate({
+                        top: -120,
+                    }, 2000)
+            }, 1000)
+        } else if (!pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[2]
+            }, 1000)
+            setTimeout(function () {
+                $('#diveText').animate({
+                        top: 0,
+                    }, 2000),
+                    $('#diveText2').animate({
+                        top: 0,
+                    }, 2000),
+                    $('#diveText3').animate({
+                        top: 0,
+                    }, 2000)
+            }, 1000)
+        }
+    });
+
+    $("#projectWrapper").waypoint(function (event) {
+        if (event === 'down' && !pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[4]
+            }, 1000);
+        } else if (!pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[3]
+            }, 1000)
+        }
+    });
+
+    $("#thankYouWrapper").waypoint(function (event) {
+        if (event === 'down' && !pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[5]
+            }, 1000);
+        } else if (!pageLoad) {
+            $("body").animate({
+                backgroundColor: backgroundColorList[4]
+            }, 1000)
+        }
     });
 
     //Check if there is a mobile browser, redirect to mobile page if so
@@ -57,11 +153,6 @@ jQuery(document).ready(function () {
         $('#screenSizeWarning').css('display', 'none');
         $('#fullPage').css('display', 'none');
     }
-
-    //Firefox has issues reloding scrollTop, this forces it.
-    $("html,body").animate({
-        scrollTop: 0
-    }, 10);
 
     //Add the terminal input
     addInput();
@@ -82,23 +173,27 @@ jQuery(document).ready(function () {
     //Parse and execute a command from the terminal
     function sendCommand(input) {
         var command = input.split(' ')[0];
-        var input = input.split(' ')[1];
-        if (commandList.indexOf(command) === -1 && command) {
+        var secondary = input.split(' ')[1];
+        if ((commandList.indexOf(command) === -1 && command != "continue") && command) {
             replaceInput();
             $("#terminalOutput").append('Invalid command \"' + command + '"<br>type "help" for more options<br>');
             addInput();
+        }
+        if (input === 'ls -la') {
+            printAllFiles();
+            return;
         }
         switch (command) {
         case 'ls':
             printFiles();
             break;
         case 'cat':
-            if (!input)
+            if (!secondary)
                 break;
-            printFile(input);
+            printFile(secondary);
             break;
         case 'continue':
-            scrollDown(command);
+            unlockPage();
             break;
         case 'reverse':
             scrollUp();
@@ -110,7 +205,7 @@ jQuery(document).ready(function () {
             clear();
             break;
         case 'man':
-            man(input);
+            man(secondary);
             break;
         case 'ps':
             //The input has issues with multiple spaces, so we use &nbsp;
@@ -123,6 +218,12 @@ jQuery(document).ready(function () {
 
             break;
         }
+    }
+
+    function unlockPage() {
+        $('body').css('overflow-y', 'auto');
+        replaceInput();
+        addInput();
     }
 
     //Print out the description of a command
@@ -155,105 +256,6 @@ jQuery(document).ready(function () {
                 opacity: 1
             }, 600);
         }, 1000);
-    }
-
-    //Scroll down the page
-    //Execute page specific commands
-    function scrollDown(command) {
-        switch (pageIndex) {
-        case 0:
-            flashTerminal();
-            setTimeout(function () {
-                shake($('#cube'));
-            }, 5000);
-            printFile('hobbies.txt');
-            break;
-        case 1:
-            setTimeout(function () {
-                $('#motorcycle').animate({
-                    opacity: 1
-                }, 1000)
-            }, 1000)
-            break;
-        case 2:
-            var top = $('#diveText').offset();
-            setTimeout(function () {
-                $('#diveText').animate({
-                        top: -320,
-                    }, 2000),
-                    $('#diveText2').animate({
-                        top: -70,
-                    }, 2000),
-                    $('#diveText3').animate({
-                        top: -120,
-                    }, 2000)
-            }, 1000)
-            break;
-        case 3:
-            flashTerminal();
-            printFile('projects.txt');
-            break;
-        case 5:
-            replaceInput();
-            $("#terminalOutput").append('You have reached the bottom of the page.<br>Type "reverse" to make your way back up.<br>');
-            addInput();
-            return;
-        }
-
-        pageIndex++;
-        var offset = $('#heightHolder').height();
-        $('html, body').animate({
-            backgroundColor: backgroundColorList[pageIndex],
-            scrollTop: offset * (pageIndex)
-        }, 1000);
-
-        $('#terminal').animate({
-            top: offset * (pageIndex) + 450,
-            left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
-        }, 1000);
-
-        //Some of the calls in the switch statement already replace the input
-        //if they did the input would be empty.
-        if ($('#terminalInput').val() != '') {
-            replaceInput();
-            addInput();
-        }
-    }
-
-    function scrollUp() {
-        var top = $('body').scrollTop();
-        var offset = $('#heightHolder').height();
-        if (pageIndex === 0) {
-            replaceInput();
-            $("#terminalOutput").append('You are at the top of the page.<br>Type "continue" to make your way down.<br>');
-            addInput();
-            return;
-        }
-
-        pageIndex--;
-        $('html, body').animate({
-            scrollTop: offset * pageIndex,
-            backgroundColor: backgroundColorList[pageIndex]
-        }, 1000);
-
-        //If we are going to the first page, center it again on the page
-        switch (pageIndex) {
-        case 0:
-            $('#terminal').animate({
-                top: 300,
-                left: 0
-            }, 1000);
-            break;
-        default:
-            $('#terminal').animate({
-                top: 0 + offset * pageIndex + 400,
-                left: pageIndex % 2 ? -$(window).width() / 4 : $(window).width() / 4
-            }, 1000);
-            break;
-        }
-        replaceInput();
-        addInput();
-
     }
 
     //Shake the given element
@@ -301,7 +303,16 @@ jQuery(document).ready(function () {
     function printFiles() {
         replaceInput();
         files.forEach(function (file) {
-            $("#terminalOutput").append(file + '  ');
+            $("#terminalOutput").append(file + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+        })
+        $("#terminalOutput").append('<br>');
+        addInput();
+    }
+
+    function printAllFiles() {
+        replaceInput();
+        allFiles.forEach(function (file) {
+            $("#terminalOutput").append(file + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
         })
         $("#terminalOutput").append('<br>');
         addInput();
@@ -348,7 +359,7 @@ jQuery(document).ready(function () {
         var command = $("#terminalInput").val();
         var input = $("#terminalInput").val().split(' ');
         var validList = [];
-        var fileList = input[0] === 'man' ? commandList : files
+        var fileList = input[0] === 'man' ? commandList : allFiles
         if (input.length === 2 && input[1] != "") {
             fileList.forEach(function (file) {
                 if (file.substring(0, input[1].length) === input[1]) {
@@ -363,7 +374,7 @@ jQuery(document).ready(function () {
                 $('#terminalOutput').append('<br>');
                 addInput();
                 $("#terminalInput").val(command);
-            } else {
+            } else if (validList.length === 1) {
                 $("#terminalInput").val(
                     command +
                     validList[0].substring(input[1].length, validList[0].length));
@@ -394,11 +405,37 @@ jQuery(document).ready(function () {
 
 
 //Shows the mobile/small screen page
-function showPage() {
+function showProgrammer() {
+    $('#experience').animate({
+        opacity: 0
+    }, 300);
+    setTimeout(function () {
+        $('#fullPage').css('opacity', '1');
+        $('body').css('height', '650vh');
+        $('#experience').remove();
+        $("#terminalInput").focus();
+        $('#mobilePage').remove();
+        $('#mobileWarning').remove();
+    }, 300)
+    pageLoad = false;
+
+}
+
+function showSimplified() {
     $('#mobileWarning').css('display', 'none');
     $('#screenSizeWarning').css('display', 'none');
-    $('#mobilePage').css('display', 'block');
-    $('html').css('backgroundColor', '#7f2f2a');
-    $('html').css('overflow', 'auto');
+    $('#experience').animate({
+        opacity: 0
+    }, 300);
+    setTimeout(function () {
+        $('#experience').remove();
+        $('#mobilePage').css('display', 'block');
+        $('#mobilePage').css('opacity', '1');
+    }, 300)
+    $('#fullPage').remove();
     $('body').css('height', 'auto');
+    $('body').css('overflow', 'auto');
+    $('body').animate({
+        backgroundColor: '#7f2f2a'
+    });
 }
