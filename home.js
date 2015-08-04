@@ -248,7 +248,7 @@ $(document).ready(function () {
             $("#terminalOutput").append('Invalid command \"' + command + '"<br>type "help" for more options<br>');
             addInput();
         }
-        if (input === 'ls -la' || 'ls -a' || 'ls -all') {
+        if (input === 'ls -la' || input === 'ls -a' || input === 'ls -all') {
             printAllFiles();
             return;
         }
