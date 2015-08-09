@@ -38,7 +38,7 @@ div#experience span {
     padding-left: 30px;
 }
 
-.simpleButton {
+p.simpleButton {
     position: relative;
     border-top: 1px solid #96d1f8;
     background: #65a9d7;
@@ -63,7 +63,7 @@ div#experience span {
     cursor: pointer;
 }
 
-.simpleButton:hover {
+p.simpleButton:hover {
     border-top-color: #28597a;
     background: #28597a;
     color: #ccc;
@@ -115,7 +115,7 @@ div#chooser {
     font-family: 'Chango', cursive;
 }
 
-#mobileWarning {
+div#mobileWarning {
     display: none;
     color: white;
     text-align: center;
@@ -125,7 +125,7 @@ div#chooser {
     top: auto;
 }
 
-#screenSizeWarning {
+div#screenSizeWarning {
     display: none;
     color: white;
     text-align: center;
@@ -137,13 +137,13 @@ div#chooser {
 }
 
 @media screen and (max-width: 850px) {
-    #fullPage {
+    div#fullPage {
         opacity: 0 !important;
     }
-    #experience {
+    div#experience {
         opacity: 0;
     }
-    #screenSizeWarning {
+    div#screenSizeWarning {
         top: auto;
         display: block;
         /*Since the other pages are only invisible, not non-existant
@@ -151,19 +151,19 @@ div#chooser {
         
         z-index: 2;
     }
-    #mobilePage p {
+    div#mobilePage p {
         font-size: 2vh !important;
     }
 }
 
-.mobile {
+section.mobile {
     display: inline-block;
     width: 20vw;
     height: 30vh;
     position: absolute;
 }
 
-#mobilePage {
+div#mobilePage {
     color: white;
     height: auto;
     display: none;
@@ -171,67 +171,67 @@ div#chooser {
     opacity: 0;
 }
 
-#mobilePage h1 {
+div#mobilePage h1 {
     text-align: center;
     line-height: 5px;
 }
 
-#mobilePage h2 {
+div#mobilePage h2 {
     text-align: center;
 }
 
-#mobilePage section {
+div#mobilePage section {
     padding: 10px;
     margin-top: 10px;
 }
 
-#mobilePage p {
+div#mobilePage p {
     font-size: 2.5vh;
     color: white;
 }
 
-#mobileHeader h1 {
+section#mobileHeader h1 {
     text-align: center;
     line-height: 5px;
     text-shadow: 2px 2px #000;
     font-size: 7vw;
 }
 
-#mobileHeader h2 {
+section#mobileHeader h2 {
     text-align: center;
     text-shadow: 2px 2px #000;
     font-size: 4vw;
     line-height: 5px;
 }
 
-#mobileHeader {
+section#mobileHeader {
     padding-top: 20vh;
     text-align: center;
 }
 
-#mobileContact {
+div#mobileContact {
     font-size: 2vw;
 }
 
-#mobilePage footer {
-    text-align: center;
-}
-
-#mobileContact a {
+div#mobileContact a {
     color: bisque;
     font-size: 2vw;
     display: inline-block;
     position: relative;
 }
-/*This is the longest section,
+
+div#mobilePage footer {
+    text-align: center;
+}
+/*About me is the longest section,
 set position relative so the page height will be correct*/
 
-#mobileAboutMe {
+section#mobileAboutMe {
     color: white;
     position: relative !important;
 }
 
-#mobileAboutMe h1 {
+section#mobileAboutMe h1 {
     background: #7E1E7F;
     height: 5vw;
     font-size: 3vw;
@@ -240,7 +240,7 @@ set position relative so the page height will be correct*/
     text-align: center;
 }
 
-#mobileMainPicture {
+img#mobileMainPicture {
     width: 15vw;
     border-radius: 50%;
     display: block;
@@ -249,11 +249,11 @@ set position relative so the page height will be correct*/
     box-shadow: 2px 2px 2px #000;
 }
 
-#mobileHobbies {
+section#mobileHobbies {
     left: 25vw;
 }
 
-#mobileHobbies h1 {
+section#mobileHobbies h1 {
     background: #122F4C;
     height: 5vw;
     line-height: 5vw;
@@ -262,11 +262,11 @@ set position relative so the page height will be correct*/
     text-align: center;
 }
 
-#mobileProjects {
+section#mobileProjects {
     left: 50vw;
 }
 
-#mobileProjects h1 {
+section#mobileProjects h1 {
     height: 5vw;
     background: #76A340;
     font-size: 3vw;
@@ -275,11 +275,11 @@ set position relative so the page height will be correct*/
     text-align: center;
 }
 
-#mobileWebsites {
+section#mobileWebsites {
     left: 75vw;
 }
 
-#mobileWebsites h1 {
+section#mobileWebsites h1 {
     height: 5vw;
     background: #CCC045;
     font-size: 3vw;
@@ -342,7 +342,7 @@ div#terminal {
     box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.75);
 }
 
-#fileBar {
+div#fileBar {
     width: 100%;
     height: 20px;
     color: white;
@@ -360,12 +360,12 @@ div#terminal {
     border-top-right-radius: 10px;
 }
 
-#fileBar span {
+div#fileBar span {
     padding-left: 10px;
     cursor: default;
 }
 
-#terminalInput {
+input#terminalInput {
     color: white;
     font-family: 'Ubuntu Mono';
     font-size: 16px;
@@ -375,11 +375,11 @@ div#terminal {
     width: 70%;
 }
 
-#terminalInput::-ms-clear {
+input#terminalInput::-ms-clear {
     display: none;
 }
 
-#terminalOutput {
+div#terminalOutput {
     height: 94%;
     padding-left: 2px;
     width: 103%;
@@ -426,7 +426,7 @@ div#cube-parallax div {
 /*end parallax settings*/
 /*Cubes*/
 
-.cube {
+div.cube {
     background: url('http://icons.iconarchive.com/icons/tatice/cristal-intense/256/Rubiks-cube-icon.png');
     text-align: center;
     width: 256px;
@@ -435,10 +435,10 @@ div#cube-parallax div {
 
 div#cube {
     margin-top: 120vh;
-    left: 60vw;
+    left: 70vw;
 }
 
-div#cubeText {
+div.cubeText {
     z-index: -1;
     top: 75px;
     overflow: hidden;
@@ -451,10 +451,10 @@ div#cubeText {
     transition: all 1s ease;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    font-weight: 400;
+    font-weight: bold;
 }
 
-.cube:hover div#cubeText {
+div.cube:hover div.cubeText {
     opacity: 1;
     filter: alpha(opacity=100);
     height: 200px !important;
@@ -465,12 +465,12 @@ div#cubeText {
 
 div#cube2 {
     top: 120vh;
-    left: 50vw;
+    left: 60vw;
 }
 
 div#cube3 {
     top: 105vh;
-    left: 70vw;
+    left: 80vw;
 }
 /*End cubes*/
 /*Motorcycles*/
@@ -582,7 +582,7 @@ div#diveText3 {
     width: 90px;
 }
 
-.dive {
+div.dive {
     top: 50vh;
     background: white;
     border-radius: 50%;
@@ -593,31 +593,7 @@ div#diveText3 {
     position: absolute !important;
 }
 
-@-webkit-keyframes greenPulse {
-    0% {
-        box-shadow: 0 0 30px #4bbec8
-    }
-    50% {
-        box-shadow: 0 0 80px #4bbec8
-    }
-    100% {
-        box-shadow: 0 0 30px #4bbec8
-    }
-}
-
-@keyframes greenPulse {
-    0% {
-        box-shadow: 0 0 30px #4bbec8
-    }
-    50% {
-        box-shadow: 0 0 80px #4bbec8
-    }
-    100% {
-        box-shadow: 0 0 30px #4bbec8
-    }
-}
-
-.dive:hover {
+div.dive:hover {
     animation: bubbleUp .15s ease;
     -webkit-animation: bubbleUp .15s ease;
     -moz-animation: bubbleUp .15s ease;
