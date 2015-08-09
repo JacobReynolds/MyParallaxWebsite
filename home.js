@@ -1,5 +1,5 @@
 //Global variables
-var commandList = ['cat', 'clear', 'help', 'ls', 'man', 'ps', 'reverse'];
+var commandList = ['cat', 'clear', 'help', 'ls', 'man', 'ps'];
 var ls = 'list all files in the current directory.';
 var help = 'list possible terminal commands.';
 var cat = 'cat [filename] will print the contents of that file.';
@@ -18,7 +18,6 @@ var pageIndex = 0;
 var backgroundColorList = ['#141414', '#7F2F2A', '#66CC76', '#5E2957', '#52A7FF', '#CCC045'];
 var commandIndex = -1;
 
-var pageLoad;
 //Detect the current browser for the 'ps' command
 var currentBrowser = function () {
     var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
@@ -52,20 +51,65 @@ function goUp() {
         return;
     allowClick = false;
     pageIndex--;
-    if (pageIndex === 0) {
+    var height = $('#heightHolder').height();
+    //IE uses html, screw IE
+    var top = Math.max($('body').scrollTop(), $('html').scrollTop());
+    $('html, body').animate({
+        scrollTop: top - height
+    }, {
+        duration: 750,
+        queue: false
+    });
+    switch (pageIndex) {
+    case 0:
         $('#upArrow').animate({
             opacity: 0
         }, 300)
-    } else if (pageIndex === 4) {
+        $("body").animate({
+            backgroundColor: backgroundColorList[0]
+        }, 1000)
+        break;
+    case 1:
+        $("body").animate({
+            backgroundColor: backgroundColorList[1]
+        }, 1000);
+        setTimeout(function () {
+            $('#motorcycle').animate({
+                opacity: 0
+            }, 1000)
+        }, 1000)
+        break;
+    case 2:
+        $("body").animate({
+            backgroundColor: backgroundColorList[2]
+        }, 1000)
+        setTimeout(function () {
+            $('#diveText').animate({
+                    top: 0,
+                }, 2000),
+                $('#diveText2').animate({
+                    top: 0,
+                }, 2000),
+                $('#diveText3').animate({
+                    top: 0,
+                }, 2000)
+        }, 1000)
+        break;
+    case 3:
+        $("body").animate({
+            backgroundColor: backgroundColorList[3]
+        }, 1000)
+        break;
+    case 4:
+        $("body").animate({
+            backgroundColor: backgroundColorList[4]
+        }, 1000)
         $('#downArrow').animate({
             opacity: 1
         }, 300)
+        break;
     }
-    var height = $('#heightHolder').height();
-    var top = $('body').scrollTop();
-    $('html, body').animate({
-        scrollTop: top - height
-    }, 750);
+
     //If they're in such a hurry to click
     //they can wait a bit
     setTimeout(function () {
@@ -80,33 +124,97 @@ function goDown() {
         return;
     allowClick = false;
     pageIndex++
-    if (pageIndex === 5) {
-        $('#downArrow').animate({
-            opacity: 0
-        }, 300)
-    } else if (pageIndex === 1) {
-        $('#upArrow').css('opacity', '0');
-        $('#upArrow').css('display', 'block');
-        $('#upArrow').animate({
-            opacity: 1
-        })
-    }
+
     var height = $('#heightHolder').height();
-    var top = $('body').scrollTop();
+    //IE uses html, screw IE
+    var top = Math.max($('body').scrollTop(), $('html').scrollTop());
     $('html, body').animate({
         scrollTop: top + height
-    }, 750);
+    }, {
+        duration: 750,
+        queue: false
+    });
     //If they're in such a hurry to click
     //they can wait a bit
     setTimeout(function () {
         allowClick = true;
     }, 1500)
+
+    switch (pageIndex) {
+    case 1:
+        $('#upArrow').css('opacity', '0');
+        $('#upArrow').css('display', 'block');
+        $('#upArrow').animate({
+            opacity: 1
+        })
+        $("body").animate({
+            backgroundColor: backgroundColorList[1]
+        }, 1000);
+        setTimeout(function () {
+            shake($('#cube'));
+        }, 1000);
+        break;
+    case 2:
+        $("body").animate({
+            backgroundColor: backgroundColorList[2]
+        }, 1000);
+        setTimeout(function () {
+            $('#motorcycle').animate({
+                opacity: 1
+            }, 1000)
+        }, 1000)
+        break;
+    case 3:
+        $("body").animate({
+            backgroundColor: backgroundColorList[3]
+        }, 1000);
+        setTimeout(function () {
+            $('#diveText').animate({
+                    top: 120,
+                }, 2000),
+                $('#diveText2').animate({
+                    top: 330,
+                }, 2000),
+                $('#diveText3').animate({
+                    top: 300,
+                }, 2000)
+        }, 1000)
+        break;
+    case 4:
+        $("body").animate({
+            backgroundColor: backgroundColorList[4]
+        }, 1000);
+        break;
+    case 5:
+        $("body").animate({
+            backgroundColor: backgroundColorList[5]
+        }, 1000);
+        $('#downArrow').animate({
+            opacity: 0
+        }, 300)
+        break;
+
+    }
 }
 
-window.onload = function () {
-    if (currentBrowser() === 'Firefox' || 'Internet Explorer') {
-        scrollTo(0, 0);
-    }
+
+//Shake the given element
+function shake(div) {
+    var interval = 100;
+    var distance = 10;
+    var times = 4;
+    var left = div.offset();
+    left = left.left;
+    for (var iter = 0; iter < (times + 1); iter++) {
+        $(div).animate({
+            left: ((iter % 2 == 0 ? left + distance : left - distance))
+        }, interval);
+    } //for                                                                                                              
+
+    $(div).animate({
+        left: left
+    }, interval);
+
 }
 
 $(document).ready(function () {
@@ -114,106 +222,11 @@ $(document).ready(function () {
         parallaxScroll();
     });
 
-    addInput();
+    //Browsers have issue resetting scrollTop, so this will do it
+    scrollTo(0, 0);
 
-    //IE sucks and shows the input even though it's opacity 0
-    $("#terminalInput").blur();
-
-    pageLoad = true;
-    $("#cubeWrapper").waypoint(function (event) {
-        if (event === 'down' && !pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[1]
-            }, 1000);
-            setTimeout(function () {
-                shake($('#cube'));
-            }, 1000);
-        } else if (!pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[0]
-            }, 1000)
-        }
-    });
-
-    $("#motorcycleWrapper").waypoint(function (event) {
-        if (event === 'down' && !pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[2]
-            }, 1000);
-            setTimeout(function () {
-                $('#motorcycle').animate({
-                    opacity: 1
-                }, 1000)
-            }, 1000)
-        } else if (!pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[1]
-            }, 1000);
-            setTimeout(function () {
-                $('#motorcycle').animate({
-                    opacity: 0
-                }, 1000)
-            }, 1000)
-        }
-    });
-
-    $("#divingWrapper").waypoint(function (event) {
-        if (event === 'down' && !pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[3]
-            }, 1000);
-            setTimeout(function () {
-                $('#diveText').animate({
-                        top: -320,
-                    }, 2000),
-                    $('#diveText2').animate({
-                        top: -70,
-                    }, 2000),
-                    $('#diveText3').animate({
-                        top: -120,
-                    }, 2000)
-            }, 1000)
-        } else if (!pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[2]
-            }, 1000)
-            setTimeout(function () {
-                $('#diveText').animate({
-                        top: 0,
-                    }, 2000),
-                    $('#diveText2').animate({
-                        top: 0,
-                    }, 2000),
-                    $('#diveText3').animate({
-                        top: 0,
-                    }, 2000)
-            }, 1000)
-        }
-    });
-
-    $("#projectWrapper").waypoint(function (event) {
-        if (event === 'down' && !pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[4]
-            }, 1000);
-        } else if (!pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[3]
-            }, 1000)
-        }
-    });
-
-    $("#thankYouWrapper").waypoint(function (event) {
-        if (event === 'down' && !pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[5]
-            }, 1000);
-        } else if (!pageLoad) {
-            $("body").animate({
-                backgroundColor: backgroundColorList[4]
-            }, 1000)
-        }
-    });
+    //Issues with IE showing the input when opacity at 0, so we add it when the section is clicked
+    $('#programmer').click(addInput);
 
     //Check if there is a mobile browser, redirect to mobile page if so
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -263,9 +276,6 @@ $(document).ready(function () {
             break;
         case 'continue':
             unlockPage();
-            break;
-        case 'reverse':
-            scrollUp();
             break;
         case 'help':
             printList(commandList);
@@ -332,25 +342,6 @@ $(document).ready(function () {
         }, 1000);
     }
 
-    //Shake the given element
-    function shake(div) {
-            var interval = 100;
-            var distance = 10;
-            var times = 4;
-            var left = div.offset();
-            left = left.left;
-            for (var iter = 0; iter < (times + 1); iter++) {
-                $(div).animate({
-                    left: ((iter % 2 == 0 ? left + distance : left - distance))
-                }, interval);
-            } //for                                                                                                              
-
-            $(div).animate({
-                left: left
-            }, interval);
-
-        } //shake        
-
     //Print the given file, usually used with "cat"
     function printFile(file) {
         if (this[file]) {
@@ -402,7 +393,11 @@ $(document).ready(function () {
     //Add a new input to the terminal
     function addInput() {
         $("#terminalOutput").append(user + ' <input id="terminalInput" spellcheck="false"></input>');
-        $("#terminalInput").focus();
+        //Delaying for IE
+        //stupid IE
+        setTimeout(function () {
+            $("#terminalInput").focus();
+        }, 10);
         $("#terminalInput").keydown(function (e) {
             var command = $("#terminalInput").val();
             if (e.keyCode == 13) {
@@ -488,14 +483,12 @@ function showProgrammer() {
         $('body').css('height', '650vh');
         $('#experience').remove();
         $("#terminalInput").focus();
-        $('#mobilePage').remove();
         $('#mobileWarning').remove();
     }, 300)
-    pageLoad = false;
-
 }
 
 function showSimplified() {
+    scrollTo(0, 0);
     $('#mobileWarning').css('display', 'none');
     $('#screenSizeWarning').css('display', 'none');
     $('#experience').animate({

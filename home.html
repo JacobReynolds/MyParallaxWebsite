@@ -6,10 +6,10 @@ The full source can be viewed on my github.
 
 For the best easter egg experience: view in Chrome.
 -->
-<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
 <html>
 
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css' />
     <link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css' rel="stylesheet" type="text/css" />
     <link href='home.css' rel="stylesheet" type="text/css" />
@@ -25,14 +25,15 @@ For the best easter egg experience: view in Chrome.
         <p>It appears you are viewing this webpage on a mobile device.
             <br>For an enhanced viewing experience please visit on a computer.
             <br>
-            <button onclick="showSimplified()">Enter mobile site</button>
+            <p class="simpleButton" onclick="showSimplified()">Enter mobile site</p>
         </p>
     </div>
     <div id="screenSizeWarning">
         <p>It appears you are viewing this webpage in a small browser window.
             <br>For an enhanced viewing experience please expand your window.
             <br>
-            <button onclick="showSimplified()">Enter simplified site</button>
+            <p class="simpleButton" onclick="showSimplified()">Enter simplified site</p>
+            <br>
         </p>
     </div>
     <div id="mobilePage">
@@ -45,8 +46,8 @@ For the best easter egg experience: view in Chrome.
         <section id="mobileAboutMe" class="mobile">
             <h1>About me</h1>
             <p>I am a software developer from Minneapolis, Mn.</p>
-            <p>I enjoy making products that automate my daily life interactions with the internet.
-                <br>Simple programs that check my grades at school, and programs that help limit my interaction with my phone while in public.</p>
+            <p>I enjoy making products that automate my daily life interactions with the internet.</p>
+            <p>Simple programs that check my grades at school, and programs that help limit my interaction with my phone while in public.</p>
             <p> My other passions include artificial intelligence, penetration testing, web/software development, and dark-themed text editors.</p>
         </section>
         <section id="mobileProjects" class="mobile">
@@ -55,13 +56,13 @@ For the best easter egg experience: view in Chrome.
         </section>
         <section id="mobileHobbies" class="mobile">
             <h1>Hobbies</h1>
-            <p>I have many hobbies, one of which is finding new hobbies.
-                <br>In my free time when I'm not coding I enjoy riding motorcycles, scuba diving, solving rubik's cubes, and learning about the latest things in the tech world.</p>
-            <p></p>
+            <p>I have many hobbies, one of which is finding new hobbies.</p>
+            <p>In my free time when I'm not coding I enjoy riding motorcycles, scuba diving, solving rubik's cubes, and learning about the latest things in the tech world.</p>
         </section>
         <section id="mobileWebsites" class="mobile">
             <h1>Web development</h1>
             <p>I enjoy learning new web development techniques, and frameworks. My current favorite is AngularJS.</p>
+            <p>I specialize in planning and coding for websites.</p>
         </section>
         <footer>
             <div id="mobileContact">
@@ -76,16 +77,18 @@ For the best easter egg experience: view in Chrome.
         <div id="heightHolder"></div>
         <img id="upArrow" onClick="goUp()" src="up-arrow.png" />
         <img id="downArrow" onClick="goDown()" src="down-arrow.png" />
-        <div id="terminal">
-            <div id="fileBar"><span>root@jakereynolds:~</span>
-            </div>
-            <div id="terminalOutput">
-                <span id="welcomeMessage">
+        <div id="terminalWrapper">
+            <div id="terminal">
+                <div id="fileBar"><span>root@jakereynolds:~</span>
+                </div>
+                <div id="terminalOutput">
+                    <span id="welcomeMessage">
             /*****************************
             <br>Welcome!
             <br>Unlock the page to begin.
             <br>*****************************/
             <br></span>
+                </div>
             </div>
         </div>
         <div id="cubeWrapper">
@@ -140,15 +143,15 @@ For the best easter egg experience: view in Chrome.
             <div id="project">
                 <h1>Projects</h1>
                 <span><h2><a href="http://www.github.com/jacobreynolds/nextrain" target="_blank">NexTrain</a> (Python)</h2>
-                    <p>A notification system to let students know when the next train will be after they get out of class.  I use this for going between East and West bank, when I only have 15 minutes.  This application helps me know which will be faster.</p>
+                    <p>A notification system to let students know when the next train will leave after they get out of class.</p>
             </span>
                 <span><h2><a href="http://www.github.com/jacobreynolds/moodlechecker" target="_blank">MoodleChecker</a> (Python)</h2>
                     <p>An automated grade checker that will notify students when teachers update their grades.  This has saved my F5 key on many occassions, especially around midterms and finals.</p>
                </span>
                 <span><h2><a href="http://www.github.com/jacobreynolds/connectfour" target="_blank">ConnectFour</a> (Java)</h2>
-                    <p>The first Java application I wrote that wasn't for school.  A simple text-based program ran in the terminal to play a 2-player game of chess.</p>
+                    <p>The first Java application I wrote that wasn't for school.  A simple text-based program ran in the terminal to play a 2-player game of Connect Four.</p>
                </span>
-                <span><h2><a href="http://www.github.com/jacobreynolds/mywebsite" target="_blank">MyWebsite</a> (AngularJS)</h2>
+                <span><h2><a href="http://www.github.com/jacobreynolds/mywebsite" target="_blank">MyAngularWebsite</a> (AngularJS)</h2>
                     <p>My first try at a personal website using AngularJS.  Eventually changed to using this design, but it was a very fun project to work on.</p>
                </span>
                 <footer>
@@ -160,9 +163,9 @@ For the best easter egg experience: view in Chrome.
                 <img id="mainPicture" src="mainPicture.jpg" />
                 <h1>Jake Reynolds</h1>
                 <p>
-                    Thanks for visiting my site! Any questions or comments can be e-mailed to reyno511@umn.edu.
+                    Thanks for visiting my site!
                     <br>Make sure to check out my <a href="http://github.com/jacobreynolds">Github</a>.
-                    <br>Type "reverse" to make your way back up the page.
+                    <br>Any questions or comments can be e-mailed to reyno511@umn.edu.
                 </p>
             </div>
         </div>
@@ -188,7 +191,5 @@ For the best easter egg experience: view in Chrome.
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
 <script type='text/javascript' src='https://code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
 <script type='text/javascript' src='home.js'></script>
-<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.4/waypoints.min.js'></script>
-
 
 </html>
