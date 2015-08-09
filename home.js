@@ -51,20 +51,37 @@ var currentBrowser = function () {
     }
 }
 
+//Used to delay click until the page is loaded
+var allowClick = true;
+
+//Go up the page
 function goUp() {
     if (!allowClick)
         return;
     allowClick = false;
     pageIndex--;
+
+    //Gets the current view height of the page
     var height = $('#heightHolder').height();
     //IE uses html, screw IE
+    //Gets the current scrolltop of the page
     var top = Math.max($('body').scrollTop(), $('html').scrollTop());
+
+    //Scroll up the page one view height
     $('html, body').animate({
         scrollTop: top - height
     }, {
         duration: 750,
         queue: false
     });
+
+    //If they're in such a hurry to click
+    //they can wait a bit
+    setTimeout(function () {
+        allowClick = true;
+    }, 1500);
+
+    //Handle what to do when scrolling to certain pages
     switch (pageIndex) {
     case 0:
         $('#upArrow').animate({
@@ -114,37 +131,36 @@ function goUp() {
         }, 300)
         break;
     }
-
-    //If they're in such a hurry to click
-    //they can wait a bit
-    setTimeout(function () {
-        allowClick = true;
-    }, 1500)
-
 }
-var allowClick = true;
 
+//Go down the page
 function goDown() {
     if (!allowClick)
         return;
     allowClick = false;
     pageIndex++
 
+    //Gets the current height of the page
     var height = $('#heightHolder').height();
     //IE uses html, screw IE
+    //Gets the current scrolltop of the page
     var top = Math.max($('body').scrollTop(), $('html').scrollTop());
+
+    //Scroll up the page one view height
     $('html, body').animate({
         scrollTop: top + height
     }, {
         duration: 750,
         queue: false
     });
+
     //If they're in such a hurry to click
     //they can wait a bit
     setTimeout(function () {
         allowClick = true;
-    }, 1500)
+    }, 1500);
 
+    //Handle what to do when scrolling to certain pages
     switch (pageIndex) {
     case 1:
         $('#upArrow').css('opacity', '0');
@@ -198,12 +214,11 @@ function goDown() {
             opacity: 0
         }, 300)
         break;
-
     }
 }
 
 
-//Shake the given element
+//Shake the given element 4 times
 function shake(div) {
     var interval = 100;
     var distance = 10;
@@ -222,6 +237,8 @@ function shake(div) {
 
 }
 
+
+//Jquery initializers
 $(document).ready(function () {
     $(window).scroll(function (e) {
         parallaxScroll();
@@ -239,17 +256,14 @@ $(document).ready(function () {
         $('#mobileWarning').css('display', 'block');
         $('#experience').remove();
         $('#fullPage').remove();
-
     }
-
-    //Add the terminal input
 
     //Make it more realistic, anywhere they click in the terminal will focus the text field.
     $("#terminal").click(function () {
         $("#terminalInput").focus();
     })
 
-    //Give a little bit of 3D to the rubik's cube
+    //Give a little bit of dimensions to the rubik's cubes
     function parallaxScroll() {
         var scrolled = $(window).scrollTop();
         $('#cube-parallax').css('top', (0 - (scrolled * .9)) + 'px');
@@ -305,6 +319,7 @@ $(document).ready(function () {
         }
     }
 
+    //Unlock the page, congratulations!
     function unlockPage() {
         $('#downArrow').css('opacity', '0');
         $('#downArrow').css('display', 'block');
@@ -333,18 +348,6 @@ $(document).ready(function () {
         replaceInput();
         $("#terminalOutput").empty();
         addInput();
-    }
-
-    //Flash the terminal, to give the user a little notification to look at it.
-    function flashTerminal() {
-        setTimeout(function () {
-            $('#terminal').animate({
-                opacity: 0.6
-            }, 600);
-            $('#terminal').animate({
-                opacity: 1
-            }, 600);
-        }, 1000);
     }
 
     //Print the given file, usually used with "cat"
@@ -379,6 +382,7 @@ $(document).ready(function () {
         addInput();
     }
 
+    //Used for "ls -a/la/all", prints all files including hidden ones
     function printAllFiles() {
         replaceInput();
         allFiles.forEach(function (file) {
@@ -403,6 +407,8 @@ $(document).ready(function () {
         setTimeout(function () {
             $("#terminalInput").focus();
         }, 10);
+
+        //Add click handlers for terminal input
         $("#terminalInput").keydown(function (e) {
             var command = $("#terminalInput").val();
             if (e.keyCode == 13) {
@@ -434,6 +440,8 @@ $(document).ready(function () {
         var input = $("#terminalInput").val().split(' ');
         var validList = [];
         var fileList = input[0] === 'man' ? commandList : allFiles
+
+        //Display valid options for a given command
         if (input.length === 2 && input[1] != "") {
             fileList.forEach(function (file) {
                 if (file.substring(0, input[1].length) === input[1]) {
@@ -454,6 +462,7 @@ $(document).ready(function () {
                     validList[0].substring(input[1].length, validList[0].length));
             }
         } else if (command.length) {
+            //Else if there is a command, print/finish all valid commands
             commandList.forEach(function (option) {
                 if (option.substring(0, input[0].length) === input[0]) {
                     validList.push(option);
@@ -478,7 +487,7 @@ $(document).ready(function () {
 });
 
 
-//Shows the mobile/small screen page
+//Shows the programmer experience page
 function showProgrammer() {
     $('#experience').animate({
         opacity: 0
@@ -492,6 +501,7 @@ function showProgrammer() {
     }, 300)
 }
 
+//Shows the mobile/small screen page
 function showSimplified() {
     scrollTo(0, 0);
     $('#mobileWarning').css('display', 'none');
