@@ -258,7 +258,8 @@ $(document).ready(function () {
         top: -1000
     }, 0)
     $('#experience').animate({
-        top: 0
+        top: 0,
+        opacity: 1
     }, 500)
 
     //Browsers have issue resetting scrollTop, so this will do it
