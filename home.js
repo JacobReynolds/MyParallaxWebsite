@@ -253,14 +253,20 @@ $(document).ready(function () {
         parallaxScroll();
     });
 
-    //Cute little entrance animation
-    $('#experience').animate({
-        top: -1000
-    }, 0)
-    $('#experience').animate({
-        top: 0,
-        opacity: 1
-    }, 500)
+    if ($(window).width() > 850) {
+        //Cute little entrance animation
+        $('#experience').animate({
+            top: -1000
+        }, 0)
+        $('#experience').animate({
+            top: 0,
+            opacity: 1
+        }, 500)
+    } else {
+        $('#experience').animate({
+            top: 0
+        })
+    }
 
     //Browsers have issue resetting scrollTop, so this will do it
     $('html, body').animate({
