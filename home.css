@@ -399,9 +399,8 @@ div#terminalOutput {
 /*End terminal*/
 
 div#cubeWrapper {
-    top: 100vh;
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 div#cube3-parallax {

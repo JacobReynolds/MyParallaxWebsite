@@ -253,13 +253,18 @@ $(document).ready(function () {
         parallaxScroll();
     });
 
+    //Cute little entrance animation
+    $('#experience').animate({
+        top: -1000
+    }, 0)
+    $('#experience').animate({
+        top: 0
+    }, 500)
+
     //Browsers have issue resetting scrollTop, so this will do it
     $('html, body').animate({
         scrollTop: 0
-    }, {
-        duration: 250,
-        queue: false
-    });
+    }, 250);
 
     //Issues with IE showing the input when opacity at 0, so we add it when the section is clicked
     $('#programmer').click(addInput);
