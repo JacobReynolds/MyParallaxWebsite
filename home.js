@@ -264,7 +264,8 @@ $(document).ready(function () {
         }, 500)
     } else {
         $('#experience').animate({
-            top: 0
+            top: 0,
+            opacity: 1
         })
     }
 
