@@ -16,6 +16,14 @@ div#experience {
     line-height: 100vh;
 }
 
+div#screwIE {
+    display: none;
+    text-align: center;
+    font-size: 40px;
+    color: mintcream;
+    font-family: 'Sansita One', cursive;
+}
+
 h1#experienceHeader {
     position: absolute;
     left: 20vw;

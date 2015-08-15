@@ -51,6 +51,15 @@ var currentBrowser = function () {
     }
 }
 
+if (document.all && !document.addEventListener) {
+    $('#screwIE').css('display', 'block');
+    $('#mobileWarning').remove();
+    $('#screenSizeWarning').remove();
+    $('#experience').remove();
+    $('#fullPage').remove();
+    $('#mobilePage').remove();
+}
+
 //Used to delay click until the page is loaded
 var allowClick = true;
 
@@ -245,7 +254,12 @@ $(document).ready(function () {
     });
 
     //Browsers have issue resetting scrollTop, so this will do it
-    scrollTo(0, 0);
+    $('html, body').animate({
+        scrollTop: 0
+    }, {
+        duration: 250,
+        queue: false
+    });
 
     //Issues with IE showing the input when opacity at 0, so we add it when the section is clicked
     $('#programmer').click(addInput);
