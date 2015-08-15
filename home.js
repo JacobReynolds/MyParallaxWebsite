@@ -538,6 +538,6 @@ function showSimplified() {
     $('body').css('height', 'auto');
     $('body').css('overflow', 'auto');
     $('body').animate({
-        backgroundColor: '#7f2f2a'
+        backgroundColor: '#fff'
     });
 }

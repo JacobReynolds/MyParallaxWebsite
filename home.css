@@ -180,30 +180,17 @@ div#mobilePage {
     opacity: 0;
 }
 
-div#mobilePage h1 {
-    text-align: center;
-    line-height: 5px;
-}
-
-div#mobilePage h2 {
-    text-align: center;
-}
-
 div#mobilePage section {
     padding: 10px;
     margin-top: 10px;
 }
 
-div#mobilePage p {
-    font-size: 2.5vh;
-    color: white;
-}
-
-section#mobileHeader h1 {
+section#mobileHeader p {
     text-align: center;
-    line-height: 5px;
-    text-shadow: 2px 2px #000;
-    font-size: 7vw;
+    line-height: 2vw;
+    height: 100vh;
+    font-size: 2vw;
+    color: #A1B2B3;
 }
 
 section#mobileHeader h2 {
@@ -223,77 +210,12 @@ div#mobileContact {
 }
 
 div#mobileContact a {
-    color: bisque;
-    font-size: 2vw;
     display: inline-block;
     position: relative;
+    margin: 10px;
 }
 
 div#mobilePage footer {
-    text-align: center;
-}
-/*About me is the longest section,
-set position relative so the page height will be correct*/
-
-section#mobileAboutMe {
-    color: white;
-    position: relative !important;
-}
-
-section#mobileAboutMe h1 {
-    background: #7E1E7F;
-    height: 5vw;
-    font-size: 3vw;
-    line-height: 5vw;
-    color: white;
-    text-align: center;
-}
-
-img#mobileMainPicture {
-    width: 15vw;
-    border-radius: 50%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 2px 2px 2px #000;
-}
-
-section#mobileHobbies {
-    left: 25vw;
-}
-
-section#mobileHobbies h1 {
-    background: #122F4C;
-    height: 5vw;
-    line-height: 5vw;
-    font-size: 3vw;
-    color: white;
-    text-align: center;
-}
-
-section#mobileProjects {
-    left: 50vw;
-}
-
-section#mobileProjects h1 {
-    height: 5vw;
-    background: #76A340;
-    font-size: 3vw;
-    line-height: 5vw;
-    color: white;
-    text-align: center;
-}
-
-section#mobileWebsites {
-    left: 75vw;
-}
-
-section#mobileWebsites h1 {
-    height: 5vw;
-    background: #CCC045;
-    font-size: 3vw;
-    line-height: 5vw;
-    color: white;
     text-align: center;
 }
 
