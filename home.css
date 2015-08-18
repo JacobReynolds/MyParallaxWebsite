@@ -35,6 +35,8 @@ h1#experienceHeader {
     padding-top: 40px;
     color: bisque;
 }
+
+
 /*There's a simple plan pun in here somewhere*/
 
 div#simplified span {
@@ -150,7 +152,6 @@ div#screenSizeWarning {
         display: block;
         /*Since the other pages are only invisible, not non-existant
         we have to increase this z-index*/
-        
         z-index: 2;
     }
     div#mobilePage p {
@@ -175,31 +176,19 @@ div#mobilePage {
 
 div#mobilePage section {
     padding: 10px;
-    margin-top: 10px;
 }
 
 section#mobileHeader p {
     text-align: center;
     line-height: 2vw;
-    height: 100vh;
-    font-size: 2vw;
+    font-size: 3vw;
     color: #A1B2B3;
-}
-
-section#mobileHeader h2 {
-    text-align: center;
-    text-shadow: 2px 2px #000;
-    font-size: 4vw;
-    line-height: 5px;
 }
 
 section#mobileHeader {
     padding-top: 20vh;
+    height: 70vh;
     text-align: center;
-}
-
-div#mobileContact {
-    font-size: 2vw;
 }
 
 div#mobileContact a {
@@ -210,6 +199,7 @@ div#mobileContact a {
 
 div#mobilePage footer {
     text-align: center;
+    height: 10vh;
 }
 
 div#fullPage {
@@ -242,6 +232,8 @@ img#downArrow {
     z-index: 2;
     display: none;
 }
+
+
 /*Terminal*/
 
 div#terminalWrapper {
@@ -312,6 +304,8 @@ div#terminalOutput {
     color: white;
     position: relative;
 }
+
+
 /*End terminal*/
 
 div#cubeWrapper {
@@ -323,6 +317,8 @@ div#cube3-parallax {
     position: fixed;
     z-index: 1;
 }
+
+
 /*Parallax settings*/
 
 div#cube3-parallax div {
@@ -346,7 +342,11 @@ div#cube-parallax {
 div#cube-parallax div {
     position: absolute;
 }
+
+
 /*end parallax settings*/
+
+
 /*Cubes*/
 
 div.cube {
@@ -374,7 +374,6 @@ div.cubeText {
     transition: all 1s ease;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    font-weight: bold;
 }
 
 div.cube:hover div.cubeText {
@@ -395,7 +394,11 @@ div#cube3 {
     top: 105vh;
     left: 80vw;
 }
+
+
 /*End cubes*/
+
+
 /*Motorcycles*/
 
 div#motorcycleWrapper {
@@ -409,7 +412,6 @@ div#motorcycle {
     background-repeat: no-repeat;
     position: relative;
     /*Issues with z-index and hover*/
-    
     z-index: 1;
     width: 256px;
     height: 256px;
@@ -455,7 +457,11 @@ div#motorcycleText {
     -webkit-transition: all 1s ease;
     transition: all 1s ease;
 }
+
+
 /*End motorcycles*/
+
+
 /*Diving*/
 
 div#divingWrapper {
@@ -593,7 +599,11 @@ div.dive:hover {
         filter: alpha(opacity=0)
     }
 }
+
+
 /*End diving*/
+
+
 /*Projects*/
 
 div#projectWrapper {
@@ -631,7 +641,11 @@ div#project footer {
     bottom: 5px;
     position: absolute;
 }
+
+
 /*End projects*/
+
+
 /*Thank you*/
 
 div#thankYouWrapper {
@@ -674,4 +688,6 @@ div#thankYou p {
     width: 50vw;
     font-weight: 200;
 }
+
+
 /*End thank you*/
