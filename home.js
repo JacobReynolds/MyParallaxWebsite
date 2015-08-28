@@ -200,13 +200,13 @@ function goDown() {
         }, 1000);
         setTimeout(function () {
             $('#diveText').animate({
-                    top: 120,
+                    top: 120
                 }, 2000),
                 $('#diveText2').animate({
-                    top: 330,
+                    top: 330
                 }, 2000),
                 $('#diveText3').animate({
-                    top: 300,
+                    top: 300
                 }, 2000)
         }, 1000)
         break;
