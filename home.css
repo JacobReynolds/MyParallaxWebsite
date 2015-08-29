@@ -151,11 +151,20 @@ div#screenSizeWarning {
         top: auto;
         display: block;
         /*Since the other pages are only invisible, not non-existant
-        we have to increase this z-index*/
+        we have to increase this z-index
+        
+        Opacity will be set to 1 in the JS if it is not mobile*/
+        opacity: 0;
         z-index: 2;
     }
     div#userPage p {
         font-size: 3vh !important;
+    }
+    div.userLetter {
+        font-size: 8vw !important;
+    }
+    div#userContact img {
+        width: 20vw !important;
     }
 }
 
@@ -167,7 +176,7 @@ div#userPage {
     opacity: 0;
 }
 
-.userLetter {
+div.userLetter {
     width: auto;
     font-size: 4vw;
     display: inline-block;
@@ -176,18 +185,18 @@ div#userPage {
     top: 40vh;
 }
 
-#userHeader {
+div#userHeader {
     text-align: center;
     height: 100vh;
     color: #A1B2B3;
     text-shadow: .5px .5px #4C5657;
 }
 
-#userAbout {
+div#userAbout {
     position: relative;
 }
 
-#userAbout p {
+div#userAbout p {
     font-family: 'Khand', sans-serif;
     width: 75%;
     margin-left: auto;
@@ -212,7 +221,7 @@ Will look into better way for centering above paragraphs which will fix this as 
 Setting height as a parameter with width because it will scale with screen width.*/
 
 div#userContact img {
-    height: 10vw;
+    width: 10vw;
     bottom: -10vh;
     position: relative;
 }

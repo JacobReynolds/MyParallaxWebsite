@@ -252,7 +252,11 @@ $(document).ready(function () {
     //Check if there is a mobile browser, redirect to mobile page if so
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         $('#screenSizeWarning').css('display', 'none');
-        showSimplified();
+        showSimplified(true);
+    } else {
+        //This does not show the warning, if the screen size is too small the media query will change display to block.
+        //Doing this so that the warning does not flash on mobile.
+        $('#screenSizeWarning').css('opacity', 1);
     }
 
     $(window).scroll(function (e) {
@@ -570,7 +574,7 @@ function animateJ() {
 }
 
 //Shows the mobile/user page
-function showSimplified() {
+function showSimplified(isMobile) {
     scrollTo(0, 0);
     $('#mobileWarning').css('display', 'none');
     $('#screenSizeWarning').css('display', 'none');
@@ -608,8 +612,9 @@ function showSimplified() {
         })
     })
 
-    setTimeout(function () {
-        animateJ();
-    }, 600)
+    if (!isMobile)
+        setTimeout(function () {
+            animateJ();
+        }, 600)
 
 }
