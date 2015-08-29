@@ -569,21 +569,7 @@ function animateJ() {
     })
 }
 
-function showArrow() {
-    $('#userDownArrow').animate({
-        opacity: 1
-    }, 500)
-    $('body').css('overflow-y', 'visible');
-}
-
-function hideArrow() {
-    $('#userDownArrow').animate({
-        opacity: 0
-    }, 300)
-    $(window).unbind("scroll")
-}
-
-//Shows the mobile/small screen page
+//Shows the mobile/user page
 function showSimplified() {
     scrollTo(0, 0);
     $('#mobileWarning').css('display', 'none');
@@ -598,6 +584,7 @@ function showSimplified() {
     }, 300)
     $('#fullPage').remove();
     $('body').css('height', 'auto');
+    $('body').css('overflow', 'auto');
     $('body').animate({
         backgroundColor: '#fff'
     });
@@ -623,13 +610,6 @@ function showSimplified() {
 
     setTimeout(function () {
         animateJ();
-    }, 1000)
-
-    setTimeout(function () {
-        showArrow();
-        $(window).scroll(function () {
-            hideArrow();
-        })
-    }, 3500)
+    }, 600)
 
 }

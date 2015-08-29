@@ -176,17 +176,6 @@ div#userPage {
     top: 40vh;
 }
 
-#userDownArrow {
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    height: 80px;
-    bottom: 20px;
-    opacity: 0;
-}
-
 #userHeader {
     text-align: center;
     height: 100vh;
