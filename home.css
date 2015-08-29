@@ -169,7 +169,7 @@ div#userPage {
 
 .userLetter {
     width: auto;
-    font-size: 60px;
+    font-size: 4vw;
     display: inline-block;
     position: relative;
     font-family: 'Hind', sans-serif;
@@ -206,10 +206,19 @@ div#userContact a {
     margin: 10px;
 }
 
+
+/*Bug with line heights from the paragraphs above, hardcoding fix for now.
+Will look into better way for centering above paragraphs which will fix this as well
+Setting height as a parameter with width because it will scale with screen width.*/
+
+div#userContact img {
+    height: 10vw;
+    bottom: -10vh;
+    position: relative;
+}
+
 div#userPage footer {
     text-align: center;
-    height: 10vh;
-    bottom: 0;
 }
 
 div#fullPage {
