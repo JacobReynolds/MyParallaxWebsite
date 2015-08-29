@@ -29,7 +29,7 @@ For the best experience: view in Chrome.
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-66697234-1', 'auto');
     ga('send', 'pageview');
@@ -51,22 +51,45 @@ For the best experience: view in Chrome.
         <p>For an enhanced viewing experience please expand your window.</p>
         <p class="simpleButton" onclick="showSimplified()">Enter simplified site</p>
     </div>
-    <div id="mobilePage">
-        <section id="mobileHeader">
-            <p>My name is Jake Reynolds</p>
-            <p>I am a software developer from Minneapolis, Mn</p>
-            <p>I currently work as a developer at Maverick Software Consulting</p>
-            <p>Want to know more? See below</p>
-        </section>
+    <div id="userPage">
+        <div id="userHeader">
+            <div class="userLetter">J</div>
+            <div class="userLetter">a</div>
+            <div class="userLetter">k</div>
+            <div class="userLetter">e</div>
+            <div class="userLetter"> </div>
+            <div class="userLetter">R</div>
+            <div class="userLetter">e</div>
+            <div class="userLetter">y</div>
+            <div class="userLetter">n</div>
+            <div class="userLetter">o</div>
+            <div class="userLetter">l</div>
+            <div class="userLetter">d</div>
+            <div class="userLetter">s</div>
+
+            <img src="down-arrow.png" id="userDownArrow" />
+        </div>
+
+        <div id="userAbout">
+            <p>I am a software developer from Minneapolis, Mn. I currently work as a web developer at Maverick Software Consulting.</p>
+
+            <p>I love all aspects of developing, from table planning and designing, all the way to optimizing page load times. I specialize in coding, so I usually find myself enjoying and learning most there.</p>
+
+            <p>On the off chance that I am not coding I enjoy playing with rubik's cubes, riding my motorcycle, and scuba diving.</p>
+
+            <p>In 5 years I see myself as either a full-stack developer, preferably in web. Or on my way to a masters in cyber security. We'll see where the future takes me.</p>
+
+            <p>Want to know more? See below.</p>
+        </div>
+
         <footer>
-            <div id="mobileContact">
+            <div id="userContact">
                 <a href="mailto:reyno511@umn.edu" target="_blank"><img src="mail.png" /> </a>
                 <a href="https://www.github.com/JacobReynolds" target="_blank"><img src="github.png" /></a>
                 <a href="https://www.linkedin.com/pub/jacob-reynolds/91/5b0/93" target="_blank"><img src="linkedin.png" /></a>
             </div>
         </footer>
     </div>
-
     <div id="fullPage">
         <div id="heightHolder"></div>
         <img id="upArrow" onClick="goUp()" src="up-arrow.png" />
@@ -164,9 +187,8 @@ For the best experience: view in Chrome.
             </div>
         </div>
     </div>
-    <!--Due to waypoints, having this at the top would cause the fullpage to load lower
-        making the waypoints at incorrect spots.
-        Position: absolute did not seem to fix the issue.-->
+
+    <!--This was forced to the bottom by using waypoints.js, after removing the plugin it was easier to just leave here.-->
     <div id="experience">
         <h1 id="experienceHeader">Choose your experience:</h1>
         <div id="simplified" onclick="showSimplified()">

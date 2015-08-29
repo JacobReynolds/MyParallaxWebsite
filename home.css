@@ -154,19 +154,12 @@ div#screenSizeWarning {
         we have to increase this z-index*/
         z-index: 2;
     }
-    div#mobilePage p {
-        font-size: 2vh !important;
+    div#userPage p {
+        font-size: 3vh !important;
     }
 }
 
-section.mobile {
-    display: inline-block;
-    width: 20vw;
-    height: 30vh;
-    position: absolute;
-}
-
-div#mobilePage {
+div#userPage {
     color: white;
     height: auto;
     display: none;
@@ -174,32 +167,60 @@ div#mobilePage {
     opacity: 0;
 }
 
-div#mobilePage section {
-    padding: 10px;
+.userLetter {
+    width: auto;
+    font-size: 60px;
+    display: inline-block;
+    position: relative;
+    font-family: 'Hind', sans-serif;
+    top: 40vh;
 }
 
-section#mobileHeader p {
+#userDownArrow {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    height: 80px;
+    bottom: 20px;
+    opacity: 0;
+}
+
+#userHeader {
     text-align: center;
-    line-height: 2vw;
-    font-size: 3vw;
+    height: 100vh;
     color: #A1B2B3;
+    text-shadow: .5px .5px #4C5657;
 }
 
-section#mobileHeader {
-    padding-top: 20vh;
-    height: 70vh;
+#userAbout {
+    position: relative;
+}
+
+#userAbout p {
+    font-family: 'Khand', sans-serif;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 36px;
     text-align: center;
+    color: #A1B2B3;
+    height: 100vh;
+    position: relative;
+    top: 40vh;
 }
 
-div#mobileContact a {
+div#userContact a {
     display: inline-block;
     position: relative;
     margin: 10px;
 }
 
-div#mobilePage footer {
+div#userPage footer {
     text-align: center;
     height: 10vh;
+    bottom: 0;
 }
 
 div#fullPage {

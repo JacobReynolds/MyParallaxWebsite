@@ -57,7 +57,7 @@ if (document.all && !document.addEventListener) {
     $('#screenSizeWarning').remove();
     $('#experience').remove();
     $('#fullPage').remove();
-    $('#mobilePage').remove();
+    $('#userPage').remove();
 }
 
 //Used to delay click until the page is loaded
@@ -249,6 +249,12 @@ function shake(div) {
 
 //Jquery initializers
 $(document).ready(function () {
+    //Check if there is a mobile browser, redirect to mobile page if so
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        $('#screenSizeWarning').css('display', 'none');
+        showSimplified();
+    }
+
     $(window).scroll(function (e) {
         parallaxScroll();
     });
@@ -276,14 +282,6 @@ $(document).ready(function () {
 
     //Issues with IE showing the input when opacity at 0, so we add it when the section is clicked
     $('#programmer').click(addInput);
-
-    //Check if there is a mobile browser, redirect to mobile page if so
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        $('#screenSizeWarning').css('display', 'none');
-        $('#mobileWarning').css('display', 'block');
-        $('#experience').remove();
-        $('#fullPage').remove();
-    }
 
     //Make it more realistic, anywhere they click in the terminal will focus the text field.
     $("#terminal").click(function () {
@@ -528,6 +526,63 @@ function showProgrammer() {
     }, 300)
 }
 
+//------------------------------------------------------------------------------------------------
+//Code for the simplified page
+
+function animateJ() {
+    var currentTop = $("#userHeader div:first-child")[0].offsetTop;
+    $("#userHeader div:first-child").animate({
+        top: '-=' + 20
+    }, {
+        queue: true,
+        duration: 300
+    })
+    $("#userHeader div:first-child").animate({
+        top: '+=' + 20
+    }, {
+        queue: true,
+        duration: 200
+    })
+    $("#userHeader div:first-child").animate({
+        top: '-=' + 12
+    }, {
+        queue: true,
+        duration: 200
+    })
+    $("#userHeader div:first-child").animate({
+        top: '+=' + 12
+    }, {
+        queue: true,
+        duration: 200
+    })
+    $("#userHeader div:first-child").animate({
+        top: '-=' + 3
+    }, {
+        queue: true,
+        duration: 150
+    })
+    $("#userHeader div:first-child").animate({
+        top: '+=' + 3
+    }, {
+        queue: true,
+        duration: 150
+    })
+}
+
+function showArrow() {
+    $('#userDownArrow').animate({
+        opacity: 1
+    }, 500)
+    $('body').css('overflow-y', 'visible');
+}
+
+function hideArrow() {
+    $('#userDownArrow').animate({
+        opacity: 0
+    }, 300)
+    $(window).unbind("scroll")
+}
+
 //Shows the mobile/small screen page
 function showSimplified() {
     scrollTo(0, 0);
@@ -538,13 +593,43 @@ function showSimplified() {
     }, 300);
     setTimeout(function () {
         $('#experience').remove();
-        $('#mobilePage').css('display', 'block');
-        $('#mobilePage').css('opacity', '1');
+        $('#userPage').css('display', 'block');
+        $('#userPage').css('opacity', '1');
     }, 300)
     $('#fullPage').remove();
     $('body').css('height', 'auto');
-    $('body').css('overflow', 'auto');
     $('body').animate({
         backgroundColor: '#fff'
     });
+
+    $('.userLetter').on('mouseenter', function () {
+        var horizontal, vertical, randHoriz, randVert;
+        horizontal = this.offsetLeft;
+        vertical = this.offsetTop;
+
+        var direction = Math.round(Math.random());
+        randHoriz = direction ? Math.floor(Math.random() * 101) : -Math.floor(Math.random() * 101);
+        direction = Math.round(Math.random());
+        randVert = direction ? -Math.floor(Math.random() * 101) : Math.floor(Math.random() * 101);
+
+        $(this).animate({
+            top: '+=' + randVert,
+            left: '+=' + randHoriz
+        }, {
+            queue: false,
+            duration: 400
+        })
+    })
+
+    setTimeout(function () {
+        animateJ();
+    }, 1000)
+
+    setTimeout(function () {
+        showArrow();
+        $(window).scroll(function () {
+            hideArrow();
+        })
+    }, 3500)
+
 }
